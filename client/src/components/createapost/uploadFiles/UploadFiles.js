@@ -17,63 +17,40 @@ import "./style.css";
 import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
 const { useToken } = theme;
-const getBase64 = (img, callback) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
-  reader.readAsDataURL(img);
-};
-const beforeUpload = (file) => {
-  console.log(file);
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
-  }
-  const isLt2M = file.size < 50000000000000;
-  if (!isLt2M) {
-    message.error("Image must smaller than 5MB!");
-  }
-  console.log(isJpgOrPng && isLt2M);
-  return isJpgOrPng && isLt2M;
-};
+
 const UploadFiles = () => {
   const { token } = useToken();
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState();
+  const [imageUrl, setImageUrl] = useState(null);
 
-  console.log(text);
-  console.log(imageUrl);
-  const addPostWithImage = async () => {
-    if (text === "") {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const formData = new FormData();
+    formData.append('image', imageUrl);
+    formData.append('text', text);
+
+      if (text === "") {
       console.log("Please input description!");
       return;
     } else {
       try {
-        const response = await axios.post("/api/v1/addposts", {
-          text_post: text,
-          images_post: imageUrl,
-        });
-        console.log(response.data.message);
-      } catch (error) {
-        console.error(error);
+        const responseImage = await axios.post('/api/v1/addpostsimage', formData);
+
+        console.log(responseImage.data.message);
+      } catch (err) {
+        console.error(err);
       }
     }
   };
 
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      console.log(info.file);
-      getBase64(info.file.originFileObj, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
+
+  // handle image
+  const handleImage = (e) => {
+    setImageUrl(e.target.files[0]);
   };
+
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : ""}
@@ -136,20 +113,13 @@ const UploadFiles = () => {
             width: "100%",
           }}
         >
-          <Form.Item
-            name="note"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
+          <Form.Item>
             <Button
-              type="primary"
+              type="submit"
               style={{
                 background: `linear-gradient(270deg,${token.colorPrimary},${token.colorBgBase})`,
               }}
-              onClick={addPostWithImage}
+              onClick={handleSubmit}
             >
               Post
             </Button>
@@ -164,29 +134,17 @@ const UploadFiles = () => {
             display: "flex",
             justifyContent: "center",
           }}
-        >
-          <Upload
-            name="avatar"
-            listType="picture-card"
-            className="avatar-uploader"
-            showUploadList={false}
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            beforeUpload={beforeUpload}
-            onChange={handleChange}
           >
-            {imageUrl ? (
-              <>
-                <Image
-                  src={imageUrl}
-                  alt="avatar"
-                  width={200}
-                  preview={false}
-                />
+          <Form.Item onSubmit={handleSubmit} encType="multipart/form-data">
+          <input type="file" name="image" accept="image/*" onChange={handleImage} />
+          </Form.Item>
+          {/* {imageUrl ? (
+            <>
+                <Image src={imageUrl} alt="Image" width={200} preview={false} />
               </>
             ) : (
               uploadButton
-            )}
-          </Upload>
+            )} */}
         </Col>
         <Col xs={24} md={24} lg={24} xl={24}>
           {imageUrl ? (
@@ -200,7 +158,7 @@ const UploadFiles = () => {
                 cursor: "pointer",
               }}
               onClick={() => {
-                setImageUrl();
+                setImageUrl(null);
               }}
             >
               Clear Image{" "}
