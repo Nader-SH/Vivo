@@ -1,12 +1,12 @@
-# Copy Project From Gaza Goes Global
+# Training
 <br />
 <div align="center" id="top">
   <a href="https://pharmacies-mangement-system.herokuapp.com/" target="_blank">
-    <img src="https://user-images.githubusercontent.com/64221231/214852034-c8f183e8-0dc7-41cc-b867-f520b6704226.png" width="350" height="70" alt="Logo" >
+    <img src="https://user-images.githubusercontent.com/64221231/218256136-f0152dd8-50d2-4f4a-b02d-fdb5f61ea964.png" width="350" height="99" alt="Logo" >
   </a>
 
   <h3 align="center">
-    VVERSE
+    ViVo
   </h3>
 <!--     <a href="https://pharmacies-mangement-system.onrender.com/"> Live link</a> -->
 </div>
@@ -15,18 +15,19 @@
 <br />
 
 ## Description:
-Creating a mini version of the verse project that Gaza Goes Global is working on.
+Creating Training Porject.
 
-## [**Database Schema**:](https://drawsql.app/teams/nader-shak/diagrams/copy-project-vverse)
+## [**Database Schema**:](https://drawsql.app/teams/nader-shak/diagrams/copy-project-vivo)
 
-![copy project vverse _ DrawSQL - Google Chrome 1_26_2023 2_40_02 PM (2)](https://user-images.githubusercontent.com/64221231/214848934-6ed016f4-90bb-4dd0-b66e-09ebb86785ad.png)
+
+![copy project vivo _ DrawSQL - Google Chrome 1_26_2023 2_40_02 PM (2)](https://user-images.githubusercontent.com/64221231/214848934-6ed016f4-90bb-4dd0-b66e-09ebb86785ad.png)
 
 ## **Getting Started**  
 
 ## :pushpin: **How to launch app locally** :- 
 
 *  clone this repo by typing this command in your terminal:  
-`git clone https://github.com/Nader-SH/copy-project-vverse.git`
+`https://github.com/Nader-SH/Vivo.git`
 
 *  Run `npm i` to install packages for the app as general.
 
