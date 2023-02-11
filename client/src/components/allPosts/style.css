@@ -1,0 +1,30 @@
+.commentData {
+  background-color: #f8f8f7;
+  border-radius: 0 12px 12px;
+  padding: 0.5rem;
+  font-size: 14px;
+  margin: 8px;
+}
+:where(.css-dev-only-do-not-override-1u34xut)[class^="ant-col"]
+  [class^="ant-col"],
+:where(.css-dev-only-do-not-override-1u34xut)[class*=" ant-col"]
+  [class^="ant-col"],
+:where(.css-dev-only-do-not-override-1u34xut)[class^="ant-col"]
+  [class*=" ant-col"],
+:where(.css-dev-only-do-not-override-1u34xut)[class*=" ant-col"]
+  [class*=" ant-col"] {
+  width: 100% !important;
+}
+.replyData{
+  background-color: #f8f8f7;
+  border-radius: 0 12px 12px;
+  padding: 0.5rem;
+  font-size: 14px;
+  margin: 8px;
+  width: 100%;
+}
+.divReplyButton{
+  justify-items: center;
+  align-items: center;
+  display: inline-grid;
+}

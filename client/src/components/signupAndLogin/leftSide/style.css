@@ -1,0 +1,23 @@
+.sssssssssssssssssss div div div {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.sssssssssssssssssss div {
+    position: inherit !important;
+    text-align: center;
+    justify-content: center;
+}
+
+.ant-tabs-tab-active {
+    border-bottom: 3px solid transparent  !important;
+    text-align:center !important;
+    /* border-bottom: 2px solid transparent !important; */
+    border-image: linear-gradient(270deg, rgb(85, 164, 204), rgb(175, 218, 26)) !important;
+    border-image-slice: 2 !important;
+    width:100% !important;
+}
+.ant-tabs-nav::before{
+    display: none;
+}

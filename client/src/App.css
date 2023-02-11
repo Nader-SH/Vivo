@@ -1,0 +1,165 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+.layout{
+  background-color: white;
+}
+
+.headerContainer{
+  background-color: white;
+}
+
+
+.rootContuner{
+  max-width: 1400px;
+  margin: auto;
+}
+.logoAndSearch{
+  order: 0;
+}
+.avatarImg{
+  float: right;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  order:0;
+}
+.headerContainer{
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+}
+.avatarDiv{
+  float: right;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  order: 1;
+}
+.hidenIcons{
+  display: flex;
+}
+.logo2{
+  display: none;
+}
+.avatarIHeader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contant{
+  background-color: white;
+  max-width: 1400px;
+  margin: auto;
+  margin-top: 30px;
+  border-radius: 15px;
+}
+.contantCart{
+  /* background-color: rgb(197, 197, 197); */
+  background-color: white;
+  max-width: 1400px;
+  margin: auto;
+  border-radius: 15px;
+}
+
+
+@media screen and (max-width: 655px) {
+  .logoImg{
+    display: none;
+  }
+  .searchHeader{
+    height: 35px;
+    font-size: 10px;
+  }
+  .logo2{
+    height: 100px;
+    width: 100px;
+    display: block;
+  }
+  .headerContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .rootContuner{
+    max-width: 100%;
+    margin: auto;
+  }
+.logoImg{
+  padding: 25px !important;
+}
+.avatarImg{
+order:0;
+margin-right: 0px;
+
+}
+.iconsHeader{
+  order: 0;
+  font-size: 20px;
+  align-items: baseline !important;
+  
+}
+  .hidenIcons{
+    display: none;
+  }
+  .ant-image{
+    display: flex;
+  }
+  .logoAndSearch{
+    display: flex;
+    align-items: center;
+  }
+  .avatarImg{
+    align-items: center;
+  }
+  .avatarIHeader{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    align-items: center;
+  }
+  .avatarDiv {
+    margin-right: 0px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .logoImg{
+    display: block;
+  }
+  .logo2{
+    height: 100px;
+    width: 100px;
+    display: block;
+  }
+  .searchHeader{
+    width: 150px !important;
+    height: 35px;
+    font-size: 15px;
+  }
+  .avatarIHeader{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    align-items: center;
+  }
+  .headerContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .rootContuner{
+    max-width: 100%;
+    margin: auto;
+  }
+
+  .hidenIcons{
+    display: none;
+  }
+  .headerIcons{
+    font-size: 20px;
+  }
+}

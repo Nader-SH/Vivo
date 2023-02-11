@@ -1,0 +1,24 @@
+.friends {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+}
+
+.friends::-webkit-scrollbar {
+    display: none;
+}
+
+.userName {
+    position: absolute;
+    top: 290px;
+    left: 90px;
+}
+
+.userImg {
+    position: absolute;
+    top: 305px;
+    left: 45px;
+}
+@media screen and (max-width: 655px) {
+
+}

@@ -1,0 +1,38 @@
+.uploadButton span{
+    font-size: 24px;
+    align-items: center;
+
+}
+.ant-upload-select{
+
+    width: 90% !important;
+    height: auto !important;
+}
+:where(.css-dev-only-do-not-override-1u34xut).ant-upload-wrapper.ant-upload-picture-card-wrapper {
+    display: inline-block;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.uploadButton{
+    align-items: center;
+    border-radius: 50px;
+    background-color: rgb(197, 197, 197);
+    color: rgb(0, 0, 0);
+    padding: 0;
+
+}
+.uploadContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.textForIcons{
+    text-align: center;
+    padding-top: 20px;
+    color: rgb(179, 179, 179);
+}
+.uploadForm div div{
+    width: 100% !important;
+}

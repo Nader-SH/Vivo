@@ -1,0 +1,35 @@
+{
+  "name": "copy-project-vverse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon ./server/index.js",
+    "start": "cross-env NODE_ENV=production nodemon ./dist/index.js",
+    "buildDb": "cross-env NODE_ENV=development node server/database/config/buildDb.js",
+    "buildSeeds": "cross-env NODE_ENV=development node server/database/seeds/buildSeeds.js",
+    "buildDbP": "cross-env NODE_ENV=production node server/database/config/buildDb.js",
+    "buildSeedsP": "cross-env NODE_ENV=production node server/database/seeds/buildSeeds.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.33.0",
+    "cloudinary-cli": "^1.1.2",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "env2": "^2.2.2",
+    "express": "^4.18.2",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^9.0.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.28.0"
+  }
+}

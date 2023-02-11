@@ -1,0 +1,27 @@
+.storys {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    /* overflow: hidden; */
+}
+
+.storys::-webkit-scrollbar {
+    display: none;
+}
+
+.userName {
+    position: absolute;
+    top: 175px;
+    left: 65px;
+}
+
+.userImg {
+    position: absolute;
+    top: 185px;
+    left: 28px;
+}
+.storyImg{
+    height: 349.5px;
+    width: 194.5px;
+    margin: 10px;
+}

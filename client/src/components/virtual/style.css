@@ -1,0 +1,24 @@
+.ant-select-selector {
+    display: flex;
+    height: 45px !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.buttonsShow label {
+    height: 55px;
+    line-height: 3.5;
+}
+.buttonsShow{
+    display: flex;
+    justify-content: center;
+}
+.selector div{
+    height: 55px !important;
+}
+.selector{
+    display: flex;
+    justify-content: center;
+    margin: 0px 20px 0px 0px ;
+}

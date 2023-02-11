@@ -1,0 +1,19 @@
+.textArea{
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    max-width: 70% !important;
+}
+.postForm{
+    display: flex;
+    justify-content: space-between;
+
+}
+.ant-input-affix-wrapper textarea{
+    padding: 13px 10px;
+}

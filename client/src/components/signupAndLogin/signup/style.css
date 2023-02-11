@@ -1,0 +1,9 @@
+.passwordinput{
+    margin: 0px;
+}
+.passwordinput input{
+    padding: 13px 14px !important;
+}
+:where(.css-dev-only-do-not-override-1u34xut).ant-input-affix-wrapper{
+    padding: 0 !important;
+}

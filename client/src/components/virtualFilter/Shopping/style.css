@@ -1,0 +1,3 @@
+.cardStyle:hover  + .hoverHeart {
+    opacity: 1;
+}

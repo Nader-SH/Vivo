@@ -1,0 +1,9 @@
+.checkBoxFix label{
+  margin-inline-start: 0px !important;
+  margin: 4px 30px;
+}
+
+
+.checkBoxFix{
+  margin: 0px 20px !important;
+}

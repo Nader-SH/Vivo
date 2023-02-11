@@ -1,0 +1,18 @@
+.gradianColorText {
+  background: linear-gradient(270deg, #55a4cc, #afda1a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.contactButton{
+    margin-top: 30px !important;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    height: auto;
+    width: 90%;
+    border-width: 2px;
+    border-style: solid;
+    border-image: linear-gradient(270deg, #55a4cc, #afda1a) 1;
+    border-radius: 12px !important;
+
+}

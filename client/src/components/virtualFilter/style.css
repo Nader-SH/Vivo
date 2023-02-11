@@ -1,0 +1,56 @@
+
+.tabs{
+    font-size: 14px;
+}
+.tabs{
+    margin: auto;
+}
+.ant-radio-button-checked{
+    background-color: #a5a299b8;
+    border-color: #a5a299b8 !important;
+}
+.ant-radio-button-input{
+    font-size: 20px;
+}
+.sideCheckBox{
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width: 655px) {
+    .ant-radio-button-input{
+        font-size: 10px;
+    }
+    .tabs{
+        display: flex;
+        overflow-x:scroll;
+        overflow-y:none;
+        height: 40px;
+        justify-content: baseline;
+    }
+    ::-webkit-scrollbar {
+        width: 0;
+        height: 5px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track  {
+          background: rgb(223, 223, 223); 
+        border-radius: 1px;
+      }
+       
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #8f8f8fb8; 
+        border-radius: 10px;
+      }
+    .ant-radio-button-wrapper .css-dev-only-do-not-override-126lqk1{
+        font-size: 18px;
+    }
+    .ant-radio-group label{
+        font-size: 18px;
+    }
+}
+
+.searchSelected div{
+    border: 0px !important;
+}
