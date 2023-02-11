@@ -36,3 +36,6 @@
 .uploadForm div div{
     width: 100% !important;
 }
+.avatar-uploader{
+    display: contents !important;
+}

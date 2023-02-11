@@ -41,8 +41,23 @@ const Comments = ({ comment, fetchDataNormal }) => {
   };
   return (
     <>
-      <Row wrap={false} className="commentData">
-        <Col xs={4} sm={2} md={2} lg={2} xl={1}>
+      <Row
+        wrap={false}
+        className="commentData"
+        style={{
+          width: "100%",
+        }}
+      >
+        <Col
+          xs={4}
+          sm={2}
+          md={2}
+          lg={2}
+          xl={1}
+          style={{
+            width: "100%",
+          }}
+        >
           {comment.User.user_image === "UserOutlined" ? (
             <Avatar size={50} icon={<UserOutlined />} />
           ) : (
@@ -80,11 +95,16 @@ const Comments = ({ comment, fetchDataNormal }) => {
           </Col>
         </Row>
       </Row>
-      <Row>
+      <Row
+        style={{
+          width: "100%",
+        }}
+      >
         <Col
           offset={2}
           style={{
             display: "flex",
+            width: "100%",
           }}
         >
           <AiFillHeart
@@ -143,10 +163,29 @@ const Comments = ({ comment, fetchDataNormal }) => {
             ""
           ) : (
             <>
-              <Col xs={3} sm={2} md={2} lg={2} xl={2} offset={2}>
+              <Col
+                xs={3}
+                sm={2}
+                md={2}
+                lg={2}
+                xl={2}
+                offset={2}
+                style={{
+                  width: "100%",
+                }}
+              >
                 <Avatar size={50} icon={<UserOutlined />} />
               </Col>
-              <Col xs={14} sm={16} md={17} lg={17} xl={17}>
+              <Col
+                xs={14}
+                sm={16}
+                md={17}
+                lg={17}
+                xl={17}
+                style={{
+                  width: "100%",
+                }}
+              >
                 <Input
                   onChange={(s) => {
                     setCommentReply(s.target.value);
@@ -166,6 +205,9 @@ const Comments = ({ comment, fetchDataNormal }) => {
                 lg={3}
                 xl={3}
                 className="divReplyButton"
+                style={{
+                  width: "100%",
+                }}
               >
                 <Button
                   type="primary"
@@ -182,7 +224,12 @@ const Comments = ({ comment, fetchDataNormal }) => {
             </>
           )}
         </Row>
-        <Col offset={2}>
+        <Col
+          offset={2}
+          style={{
+            width: "100%",
+          }}
+        >
           {comment.CommentReplies[0] !== undefined
             ? showReplies === true
               ? comment.CommentReplies.map((reply) => {

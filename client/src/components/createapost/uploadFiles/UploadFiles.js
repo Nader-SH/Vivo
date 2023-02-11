@@ -28,7 +28,7 @@ const beforeUpload = (file) => {
   if (!isJpgOrPng) {
     message.error("You can only upload JPG/PNG file!");
   }
-  const isLt2M = file.size  < 50000000000000;
+  const isLt2M = file.size < 50000000000000;
   if (!isLt2M) {
     message.error("Image must smaller than 5MB!");
   }
@@ -76,7 +76,7 @@ const UploadFiles = () => {
   };
   const uploadButton = (
     <div>
-      {loading ? <LoadingOutlined /> : ''}
+      {loading ? <LoadingOutlined /> : ""}
       <Avatar size={30} icon={<SvgComponent />} />
       <Typography
         style={{
@@ -155,7 +155,16 @@ const UploadFiles = () => {
             </Button>
           </Form.Item>
         </Col>
-        <Col xs={24} md={24} lg={24} xl={24}>
+        <Col
+          xs={24}
+          md={24}
+          lg={24}
+          xl={24}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Upload
             name="avatar"
             listType="picture-card"
@@ -165,30 +174,41 @@ const UploadFiles = () => {
             beforeUpload={beforeUpload}
             onChange={handleChange}
           >
-            {imageUrl ? (<>
-              <Image src={imageUrl} alt="avatar" width={200} preview={false} />
-            </>
+            {imageUrl ? (
+              <>
+                <Image
+                  src={imageUrl}
+                  alt="avatar"
+                  width={200}
+                  preview={false}
+                />
+              </>
             ) : (
-                uploadButton
-                )}
+              uploadButton
+            )}
           </Upload>
         </Col>
         <Col xs={24} md={24} lg={24} xl={24}>
-               {imageUrl ? 
-                <Typography style={{
-                    fontWeight:'bold',
-                    fontSize:'20px',
-                    display:'flex',
-                    justifyContent:'center',
-                    textAlign:'center',
-                    cursor:'pointer'
-                }}
-                onClick={()=>{
-                    setImageUrl();
-                }}
-                >Clear Image </Typography> : ''
-            }
-            </Col>
+          {imageUrl ? (
+            <Typography
+              style={{
+                fontWeight: "bold",
+                fontSize: "20px",
+                display: "flex",
+                justifyContent: "center",
+                textAlign: "center",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setImageUrl();
+              }}
+            >
+              Clear Image{" "}
+            </Typography>
+          ) : (
+            ""
+          )}
+        </Col>
       </Row>
     </>
   );

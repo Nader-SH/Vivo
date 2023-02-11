@@ -405,13 +405,22 @@ const ShowPsots = () => {
                     </Button>
                   </Form.Item>
                 </Col>
-                <Col>
-                  <Row>
-                    <Col>
+                <Col style={{
+                        width: '100%',
+                  }}>
+                  <Row style={{
+                        width: '100%',
+                  }}>
+                    <Col style={{
+                        width: '100%',
+                  }}>
                       {e.Comments.map((comment) => (
                         <Comments
                           comment={comment}
                           fetchDataNormal={fetchDataNormal}
+                          style={{
+                            width: '100%',
+                      }}
                         />
                       ))}
                     </Col>
