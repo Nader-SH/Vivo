@@ -30,7 +30,6 @@ const UploadFiles = () => {
     const formData = new FormData();
     formData.append('image', imageUrl);
     formData.append('text', text);
-
       if (text === "") {
       console.log("Please input description!");
       return;

@@ -29,42 +29,64 @@ const MyFormItem = ({ name, ...props }) => {
 };
 const SignIn = () => {
   const [status, setStatus] = useState("done");
-  const navigate  = useNavigate();
-const [error ,setError] = useState();
+  const navigate = useNavigate();
+  const [error, setError] = useState();
   const onFinish = (value) => {
-      axios
-        .post("/api/v1/signin", { data: value.user })
-        .then(function (response) {
-          console.log(response);
-          setError();
-          navigate("/")
-        })
-        .catch(function (error) {
-          console.log(error);
-          setError(error);
-        });
+    axios
+      .post("/api/v1/signin", { data: value.user })
+      .then(function (response) {
+        console.log(response);
+        setError();
+        navigate("/");
+      })
+      .catch(function (error) {
+        console.log(error);
+        setError(error);
+      });
   };
 
   return (
-    <Row>
+    <Row
+      style={{
+        width: "100%",
+      }}
+    >
       <Col xs={24} md={24} lg={24} xl={24}>
-        <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
-          <MyFormItemGroup prefix={["user"]}>
-            <MyFormItem name="email" label="Email">
+        <Form
+        className="widthInput"
+          name="form_item_path"
+          layout="vertical"
+          onFinish={onFinish}
+
+        >
+          <MyFormItemGroup
+            prefix={["user"]}
+
+          >
+            <MyFormItem
+              name="email"
+              label="Email"
+
+            >
               <Input
                 status={status}
                 style={{
-                  border:`${status === 'error' ? "1px solid red" : '0px solid'}`
+                  border: `${
+                    status === "error" ? "1px solid red" : "0px solid"
+                  }`,
                 }}
                 className="passwordinput"
                 placeholder="Enter Email"
               />
             </MyFormItem>
-            <MyFormItem name="password" label="Password">
+            <MyFormItem
+              name="password"
+              label="Password"
+            >
               <Input.Password
                 status={status}
                 style={{
-                  border:`${error ? "1px solid red" : '0px solid'}`
+                  border: `${error ? "1px solid red" : "0px solid"}`,
                 }}
                 className="passwordinput"
                 placeholder="Enter Password"
@@ -74,7 +96,13 @@ const [error ,setError] = useState();
               />
             </MyFormItem>
           </MyFormItemGroup>
-          <Button type="primary" htmlType="submit">
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{
+              width: "50%",
+            }}
+          >
             Submit
           </Button>
         </Form>

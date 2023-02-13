@@ -24,9 +24,12 @@ const SignAndLogin = () => {
           // margin:'auto'
           display: "flex",
           justifyContent: "center",
+          flexWrap:'wrap'
         }}
       >
-        <Col offset={1} xs={15} md={15} lg={15} xl={15}>
+        <Col offset={1} xs={23} md={12} lg={12} xl={12} style={{
+          display: 'grid',
+        }}>
           <Image width={331} height={90} src={logo} preview={false} />
           <Avatar.Group
             maxPopoverTrigger="click"
@@ -66,10 +69,10 @@ const SignAndLogin = () => {
           </Avatar.Group>
         </Col>
         <Col
-          xs={7}
-          md={7}
-          lg={7}
-          xl={7}
+          xs={20}
+          md={20}
+          lg={8}
+          xl={8}
           style={{
             backgroundColor: "white",
             borderRadius: "12px",
@@ -79,7 +82,7 @@ const SignAndLogin = () => {
             defaultActiveKey="1"
             items={items}
             onChange={onChange}
-            className="sssssssssssssssssss"
+            className="tabsStyle"
           >
             <span>{onChange}</span>
           </Tabs>

@@ -7,3 +7,12 @@
 :where(.css-dev-only-do-not-override-1u34xut).ant-input-affix-wrapper{
     padding: 0 !important;
 }
+.widthInput .css-dev-only-do-not-override-1ax8zqu{
+    width: 100% !important;
+}
+.widthInput{
+    width: 100% !important;
+}
+.form_item_path{
+    width: 100% !important;
+}

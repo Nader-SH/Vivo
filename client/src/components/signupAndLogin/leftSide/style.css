@@ -1,10 +1,10 @@
-.sssssssssssssssssss div div div {
+.tabsStyle div div div {
   font-size: 20px;
   display: flex;
   justify-content: center;
   cursor: pointer;
 }
-.sssssssssssssssssss div {
+.tabsStyle div {
     position: inherit !important;
     text-align: center;
     justify-content: center;
@@ -20,4 +20,12 @@
 }
 .ant-tabs-nav::before{
     display: none;
+}
+.ant-tabs-tab{
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+:where(.css-dev-only-do-not-override-1ax8zqu).ant-tabs >.ant-tabs-nav .ant-tabs-nav-list, :where(.css-dev-only-do-not-override-1ax8zqu).ant-tabs >div>.ant-tabs-nav .ant-tabs-nav-list {
+    width: 100% !important;
 }

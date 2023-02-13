@@ -4,6 +4,7 @@ import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import GoogleButton from 'react-google-button';
 
 const MyFormItemContext = React.createContext([]);
 function toArr(str) {
@@ -54,7 +55,7 @@ const Signup = () => {
   return (
     <Row>
       <Col xs={24} md={24} lg={24} xl={24}>
-        <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
+        <Form name="form_item_path" layout="vertical" onFinish={onFinish} className="widthInput">
           <MyFormItemGroup prefix={["user"]}>
             <MyFormItem name="email" label="Email">
               <Input
@@ -118,6 +119,15 @@ const Signup = () => {
             Submit
           </Button>
         </Form>
+      </Col>
+      <Col span={20} style={{
+        margin:'10px'
+      }}>
+        <Row>
+          <Col>
+          <GoogleButton onClick={() => { console.log('Google button clicked') }} />
+          </Col>
+        </Row>
       </Col>
     </Row>
   );
