@@ -13,7 +13,6 @@ const addPosts = async (req, res, next) => {
         message: "Post Add Success",
       });
     } catch (err) {
-      console.log(err);
       res.status(err.status || 500).json({ message: err.message });
     }
 };

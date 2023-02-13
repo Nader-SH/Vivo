@@ -32,8 +32,6 @@ const Signup = () => {
   const [status, setStatusError] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
-  console.log(passwordError);
-
   const onFinish = (value) => {
     if (value.user.password === value.user.confirmPassword) {
       axios
@@ -42,11 +40,9 @@ const Signup = () => {
           setPasswordError(false);
         })
         .catch(function (error) {
-          console.log(error);
           setStatusError(error);
           setPasswordError(false);
         });
-      console.log(value);
     } else {
       setPasswordError(true);
     }

@@ -1,3 +1,4 @@
 import signUp from "./signUp.js";
 import signIn from "./signIn.js";
-export { signUp, signIn };
+import userData from "./userData.js";
+export { signUp, signIn, userData };

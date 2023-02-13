@@ -3,7 +3,6 @@ import { addCommentReplyQuery } from "../../queries/post/index.js";
 import { CustomError } from "../../utils/index.js";
 
 const addCommentReply = async (req, res, next) => {
-    console.log(req.body);
   const { text_reply, comment_id } = req.body;
   const { id } = req.user;
   try {
@@ -13,7 +12,6 @@ const addCommentReply = async (req, res, next) => {
       message: "Comment Reply Add Success",
     });
   } catch (err) {
-    console.log(err);
     res.status(err.status || 500).json({ message: err.message });
   }
 };

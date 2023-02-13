@@ -1,9 +1,6 @@
 import "./App.css";
-import React, { createContext, useEffect, useState } from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import HomePageView from "./dashboard/HomePageView";
 import MarketPlace from "./dashboard/MarketPlaceView";
@@ -13,12 +10,26 @@ import Meetings from "./dashboard/MeetingsView";
 import CartPageView from "./dashboard/CartPageView";
 import WelcomePage from "./dashboard/WelcomePageView";
 import LoginPage from "./dashboard/LoginPageView";
+import axios from "axios";
 export const CartData = createContext({ data: null, setData: null });
+export const UserContext = createContext({ userData: null, setUserData: null });
 
 function App() {
+  const [userData, setUserData] = useState(null);
   const [data, setData] = useState([]);
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-  console.log(cookies.token);
+  const userDatafunc = async () => {
+    try {
+      const allDataUser = await axios.get("/api/v1/userdata");
+      setUserData(allDataUser.data)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    userDatafunc();
+  }, []);
+
 
   const router = createBrowserRouter([
     {
@@ -55,9 +66,11 @@ function App() {
     },
   ]);
   return (
-    <CartData.Provider value={{ data, setData }}>
-      <RouterProvider router={router} />
-    </CartData.Provider>
+    <UserContext.Provider value={{ userData, setUserData }}>
+      <CartData.Provider value={{ data, setData }}>
+        <RouterProvider router={router} />
+      </CartData.Provider>
+    </UserContext.Provider>
   );
 }
 export default App;

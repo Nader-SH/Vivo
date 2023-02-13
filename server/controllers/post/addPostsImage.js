@@ -21,7 +21,6 @@ const addPostsImage = async (req, res, next) => {
         message: "Post and Image Add Success",
       });
     } catch (err) {
-      console.log(err);
       res.status(err.status || 500).json({ message: err.message });
     }
   }

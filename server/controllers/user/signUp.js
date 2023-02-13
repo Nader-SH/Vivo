@@ -32,7 +32,6 @@ const signUp = async (req, res, next) => {
       message: "Success",
     });
   } catch (err) {
-    console.log(err);
     if (err.name === "ValidationError") {
       return next(new CustomError(err.status, err.message));
     }

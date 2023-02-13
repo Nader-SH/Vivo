@@ -12,7 +12,7 @@ switch (NODE_ENV) {
     ssl = {
       rejectUnauthorized: false,
     };
-    console.log(url + " sssss");
+    console.log(url + " ----- for Production");
     break;
   case "development":
     url = DEV_DB_URL;

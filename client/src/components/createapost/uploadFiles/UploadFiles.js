@@ -36,7 +36,6 @@ const UploadFiles = () => {
     } else {
       try {
         const responseImage = await axios.post('/api/v1/addpostsimage', formData);
-
         console.log(responseImage.data.message);
       } catch (err) {
         console.error(err);

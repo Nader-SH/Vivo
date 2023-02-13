@@ -45,7 +45,6 @@ const ShowPsots = () => {
   const [dataPostAll, setDataPostAll] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setIsLoading] = useState(false);
-  console.log(dataPostAll);
   const antIcon = (
     <LoadingOutlined
       style={{
@@ -79,7 +78,6 @@ const ShowPsots = () => {
     try {
       const response = await axios.get(`/api/v1/getposts/?page=${page}`);
       setDataPostAll(response.data.rows);
-      console.log('dataddd');
     } catch (error) {
       console.error(error);
     } finally {
@@ -106,7 +104,6 @@ const ShowPsots = () => {
           post_id: postId,
         });
         fetchDataNormal();
-        console.log(response.data.message);
       } catch (error) {
         console.error(error);
       }
@@ -459,7 +456,7 @@ const items = [
 ];
 
 function finCal() {
-  console.log("sssssss");
+return;
 }
 
 // {

@@ -1,28 +1,28 @@
-import React, { createContext } from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ConfigProvider } from 'antd';
+import React, { createContext } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ConfigProvider } from "antd";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: '#afda1a',
-            colorBgBase: '#579ADD',
-            colorBgContainer: 'white',
-            colorBorderSecondary: '#a5a299b8',
+            colorPrimary: "#afda1a",
+            colorBgBase: "#579ADD",
+            colorBgContainer: "white",
+            colorBorderSecondary: "#a5a299b8",
           },
           components: {
             Tabs: {
               // colorPrimary:'red',
               // colorText: 'black',
               // colorPrimaryHover:'black',
-            }
-          }
+            },
+          },
         }}
       >
         <App />

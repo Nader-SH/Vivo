@@ -33,7 +33,6 @@ const Comments = ({ comment, fetchDataNormal }) => {
           comment_id: commentReplyId,
         });
         fetchDataNormal();
-        console.log(response.data.message);
       } catch (error) {
         console.error(error);
       }

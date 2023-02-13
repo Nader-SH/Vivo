@@ -6,7 +6,6 @@ const auth = async (req, res, next) => {
     if (!token) throw new CustomError(401, 'Unauthorized');
 
     const user = await verifyToken(token);
-    console.log(user,"userData");
     req.user = user;
     next();
   } catch (err) {

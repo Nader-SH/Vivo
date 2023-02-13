@@ -1,10 +1,13 @@
 import "./style.css";
 
 import { Button, Col, Form, Input, Row } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+import { UserContext } from "../../../App.js";
+
 const MyFormItemContext = React.createContext([]);
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
@@ -28,19 +31,20 @@ const MyFormItem = ({ name, ...props }) => {
   return <Form.Item name={concatName} {...props} />;
 };
 const SignIn = () => {
+  const { userData, setUserData } = React.useContext(UserContext);
+
   const [status, setStatus] = useState("done");
   const navigate = useNavigate();
   const [error, setError] = useState();
+  
   const onFinish = (value) => {
     axios
       .post("/api/v1/signin", { data: value.user })
       .then(function (response) {
-        console.log(response);
         setError();
         navigate("/");
       })
       .catch(function (error) {
-        console.log(error);
         setError(error);
       });
   };
@@ -53,21 +57,13 @@ const SignIn = () => {
     >
       <Col xs={24} md={24} lg={24} xl={24}>
         <Form
-        className="widthInput"
+          className="widthInput"
           name="form_item_path"
           layout="vertical"
           onFinish={onFinish}
-
         >
-          <MyFormItemGroup
-            prefix={["user"]}
-
-          >
-            <MyFormItem
-              name="email"
-              label="Email"
-
-            >
+          <MyFormItemGroup prefix={["user"]}>
+            <MyFormItem name="email" label="Email">
               <Input
                 status={status}
                 style={{
@@ -79,10 +75,7 @@ const SignIn = () => {
                 placeholder="Enter Email"
               />
             </MyFormItem>
-            <MyFormItem
-              name="password"
-              label="Password"
-            >
+            <MyFormItem name="password" label="Password">
               <Input.Password
                 status={status}
                 style={{

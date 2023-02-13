@@ -9,7 +9,6 @@ const Storys = () => {
   const [storysData, setStorysData] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setIsLoading] = useState(false);
-console.log(storysData);
   const antIcon = (
     <LoadingOutlined
       style={{

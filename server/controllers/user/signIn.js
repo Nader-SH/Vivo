@@ -7,7 +7,6 @@ import { singInQuery } from "../../queries/user/index.js";
 import { generateToken, CustomError } from "../../utils/index.js";
 
 const signIn = async (req, res, next) => {
-  // console.log(req.body.data);
   try {
     const { email, password: signInPass } = req.body.data;
     await signinValidation(email, signInPass);
@@ -24,6 +23,9 @@ const signIn = async (req, res, next) => {
       id: loginData[0].dataValues.id,
       email: loginData[0].dataValues.email,
       password: loginData[0].dataValues.password,
+      user_image: loginData[0].dataValues.user_image,
+      user_name: loginData[0].dataValues.user_name,
+      updatedAt: loginData[0].dataValues.updatedAt,
     });
     return res.cookie("token", token, { httpOnly: true }).json({
       data: {
@@ -36,7 +38,6 @@ const signIn = async (req, res, next) => {
       message: "Success",
     });
   } catch (err) {
-    console.log(err);
     if (err.name === "ValidationError") {
       next(new CustomError(400, "Something went wrong, Try again"));
     }

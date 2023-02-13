@@ -24,10 +24,9 @@ const PostForm = () => {
       .post("/api/v1/addposts", {text_post :text})
       .then( (response) => {
         console.log(response);
-        
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch( (err) => {
+        console.log(err);
       });
       setErrorReaquireText("");
       setDataPost([text, ...dataPost]);
