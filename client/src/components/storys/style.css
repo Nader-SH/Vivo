@@ -11,14 +11,16 @@
 
 .userName {
     position: absolute;
-    top: 175px;
-    left: 65px;
+    top: 186px;
+    left: 55px;
+    color: aliceblue;
+    font-size: 0.7rem;
 }
 
 .userImg {
     position: absolute;
     top: 185px;
-    left: 28px;
+    left: 20px;
 }
 .storyImg{
     height: 349.5px;

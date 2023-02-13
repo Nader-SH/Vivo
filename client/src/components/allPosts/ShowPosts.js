@@ -15,7 +15,7 @@ import {
   theme,
 } from "antd";
 import friend from "../../assets/Friend.png";
-import { MoreOutlined, UserOutlined } from "@ant-design/icons";
+import { MoreOutlined } from "@ant-design/icons";
 import { IoMdShareAlt } from "react-icons/io";
 import { BiCommentDetail } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
