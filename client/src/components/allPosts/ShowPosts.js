@@ -1,8 +1,7 @@
 import "./style.css";
 import Typography from "antd/es/typography/Typography";
 import React, { useContext, useEffect, useState } from "react";
-import { PostData } from "../../dashboard/HomePageView";
-import ReactTimeAgo from 'react-time-ago';
+import ReactTimeAgo from "react-time-ago";
 import {
   Avatar,
   Button,
@@ -27,15 +26,14 @@ import TimeAgo from "javascript-time-ago";
 
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
-
+import { MsgContext } from "../../App.js";
 import axios from "axios";
 const { useToken } = theme;
 
 const ShowPsots = () => {
   TimeAgo.addDefaultLocale(en);
   TimeAgo.addLocale(ru);
-  const { dataPost, setDataPost } = useContext(PostData);
-
+  const { msg, setMsg } = useContext(MsgContext);
   const [comment, setComment] = useState("");
   const [postId, setPostId] = useState();
   const { token } = useToken();
@@ -45,6 +43,7 @@ const ShowPsots = () => {
   const [dataPostAll, setDataPostAll] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setIsLoading] = useState(false);
+  
   const antIcon = (
     <LoadingOutlined
       style={{
@@ -59,8 +58,24 @@ const ShowPsots = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
-
+useEffect(() => {
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`/api/v1/getposts/?page=${page}`);
+      setDataPostAll(response.data.rows);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+      setMsg(null)
+    }
+  };
+  fetchData();
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [msg])
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -70,6 +85,7 @@ const ShowPsots = () => {
       console.error(error);
     } finally {
       setIsLoading(false);
+      setMsg(null)
     }
   };
 
@@ -99,7 +115,7 @@ const ShowPsots = () => {
       return;
     } else {
       try {
-        const response = await axios.post("/api/v1/addcomment", {
+       await axios.post("/api/v1/addcomment", {
           text_comment: comment,
           post_id: postId,
         });
@@ -149,7 +165,7 @@ const ShowPsots = () => {
                     opacity: "0.5",
                   }}
                 >
-                  <ReactTimeAgo date={e.createdAt} locale="en-US"/>
+                  <ReactTimeAgo date={e.createdAt} locale="en-US" />
                 </Typography>
               </Col>
               <Col xs={4} sm={4} md={4} lg={2} xl={2}>
@@ -402,22 +418,28 @@ const ShowPsots = () => {
                     </Button>
                   </Form.Item>
                 </Col>
-                <Col style={{
-                        width: '100%',
-                  }}>
-                  <Row style={{
-                        width: '100%',
-                  }}>
-                    <Col style={{
-                        width: '100%',
-                  }}>
+                <Col
+                  style={{
+                    width: "100%",
+                  }}
+                >
+                  <Row
+                    style={{
+                      width: "100%",
+                    }}
+                  >
+                    <Col
+                      style={{
+                        width: "100%",
+                      }}
+                    >
                       {e.Comments.map((comment) => (
                         <Comments
                           comment={comment}
                           fetchDataNormal={fetchDataNormal}
                           style={{
-                            width: '100%',
-                      }}
+                            width: "100%",
+                          }}
                         />
                       ))}
                     </Col>
@@ -456,7 +478,7 @@ const items = [
 ];
 
 function finCal() {
-return;
+  return;
 }
 
 // {

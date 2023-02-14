@@ -3,17 +3,20 @@ import { Input, Button, theme, Row, Col, Avatar, Typography, Form } from "antd";
 import "./style.css";
 import friend from "../../../assets/Friend.png";
 import { PostData } from "../../../dashboard/HomePageView";
+import { MsgContext } from "../../../App.js";
 import axios from "axios";
 const { TextArea } = Input;
 const { useToken } = theme;
 const PostForm = () => {
+  // eslint-disable-next-line no-unused-vars
+  const { msg, setMsg } = useContext(MsgContext);
   const [form] = Form.useForm();
   const { dataPost, setDataPost } = useContext(PostData);
   const { token } = useToken();
   const [text, setText] = useState("");
   const [errorReaquireText, setErrorReaquireText] = useState("");
   const [errorReaquireColor, setErrorReaquireColor] = useState("");
- 
+
   const requireTextPost = () => {
     if (text === "") {
       setErrorReaquireText("Please input description!");
@@ -21,13 +24,13 @@ const PostForm = () => {
       return;
     } else {
       axios
-      .post("/api/v1/addposts", {text_post :text})
-      .then( (response) => {
-        console.log(response);
-      })
-      .catch( (err) => {
-        console.log(err);
-      });
+        .post("/api/v1/addposts", { text_post: text })
+        .then((response) => {
+          setMsg(response.data.message)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       setErrorReaquireText("");
       setDataPost([text, ...dataPost]);
       setErrorReaquireColor("");

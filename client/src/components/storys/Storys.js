@@ -1,14 +1,16 @@
 import "./style.css";
 import person from "../../assets/border.png";
-import imgFace from "../../assets/Friend.png";
-import { Image, Avatar, Typography, Row, Col, Spin } from "antd";
-import { useEffect, useState } from "react";
+// import imgFace from "../../assets/Friend.png";
+import { Image, Avatar, Typography, Row, Col, Spin, Button } from "antd";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, PlusCircleFilled } from "@ant-design/icons";
 const Storys = () => {
   const [storysData, setStorysData] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setIsLoading] = useState(false);
+  const [image, setImage] = useState(null);
+  const [msg, setMsg] = useState("");
   const antIcon = (
     <LoadingOutlined
       style={{
@@ -23,6 +25,7 @@ const Storys = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const handleScroll = (event) => {
@@ -36,6 +39,22 @@ const Storys = () => {
       setIsLoading(false);
     }
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(`/api/v1/getstorys/?page=${page}`);
+        setStorysData(response.data.rows);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+        setMsg('')
+      }
+    };
+    fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [msg])
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -47,11 +66,37 @@ const Storys = () => {
       setIsLoading(false);
     }
   };
+  const fileInputRef = useRef(null);
 
+  const handleFileSelect = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+  useEffect(() => {
+    const formData = new FormData();
+    formData.append("image", image);
+    const sendDataForm = async () => {
+      try {
+        console.log("send Data");
+        const responseImage = await axios.post(
+          "/api/v1/addstorysimage",
+          formData
+        );
+        setMsg(responseImage.data.message);
+        console.log(responseImage.data.message);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    sendDataForm();
+  }, [image]);
   return (
     <>
       <Row>
-        <Col>
+        <Col span={24}>
           <Typography
             style={{
               fontSize: "30px",
@@ -93,52 +138,103 @@ const Storys = () => {
                   textAlign: "center",
                 }}
               >
-                <h3
+                <Row
                   style={{
                     cursor: "pointer",
                   }}
+                  onClick={() => {
+                    console.log("open");
+                  }}
                 >
-                  Add Story
-                </h3>
+                  <Col
+                    span={24}
+                    style={{
+                      fontSize: "1.5rem",
+                      color: "white",
+                    }}
+                  >
+                    <input
+                      type="file"
+                      name="image"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      ref={fileInputRef}
+                      onChange={handleFileChange}
+                    />
+                    <Button
+                      style={{
+                        background: "none",
+                        border: "0px",
+                      }}
+                      icon={<PlusCircleFilled />}
+                      onClick={handleFileSelect}
+                    ></Button>
+                  </Col>
+                  <Col
+                    span={24}
+                    style={{
+                      fontSize: "1.1rem",
+                      color: "white",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Add Story
+                  </Col>
+                </Row>
               </div>
             </div>
           </Col>
-          {storysData.map((e) => (
-            <div
+          {storysData.length === 0 ? (
+            <Col
+              span={24}
               style={{
-                position: "relative",
+                textAlign: "center",
+                alignItems: "center",
+                display: "flex",
               }}
             >
-              <Image
-                preview={false}
-                src={e.image}
-                className="storyImg"
+              <h1>No Story Yet</h1>
+            </Col>
+          ) : (
+            storysData.map((e) => (
+              <div
                 style={{
-                  height: "220.5px",
-                  width: "160.5px",
-                  margin: "10px",
+                  position: "relative",
                 }}
-              />
-              <Avatar className="userImg" src={e.User.user_image} />
-              <h3 className="userName">{e.User.user_name}</h3>
-            </div>
-          ))}
-        <Col span={2} style={{
-            display:'flex',
-            justifyContent:'center',
-            alignItems:'center',
-            
-        }}>
-          {loading && (
-            <Spin
-              style={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-              indicator={antIcon}
-            />
+              >
+                <Image
+                  preview={false}
+                  src={e.image}
+                  className="storyImg"
+                  style={{
+                    height: "220.5px",
+                    width: "160.5px",
+                    margin: "10px",
+                  }}
+                />
+                <Avatar className="userImg" src={e.User.user_image} />
+                <h3 className="userName">{e.User.user_name}</h3>
+              </div>
+            ))
           )}
-        </Col>
+          <Col
+            span={2}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {loading && (
+              <Spin
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                indicator={antIcon}
+              />
+            )}
+          </Col>
         </div>
       </Row>
     </>
@@ -146,96 +242,3 @@ const Storys = () => {
 };
 
 export default Storys;
-
-const data = [
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-  {
-    img: person,
-    userName: "userName",
-    userImg: imgFace,
-  },
-];

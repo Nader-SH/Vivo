@@ -1,76 +1,76 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
-  Avatar,
+  // Avatar,
   Col,
   theme,
   Row,
   Typography,
-  Upload,
-  message,
-  Image,
   Form,
   Button,
 } from "antd";
-import SvgComponent from "../../svg/AddImage";
-import { LoadingOutlined } from "@ant-design/icons";
+// import SvgComponent from "../../svg/AddImage";
+// import { LoadingOutlined } from "@ant-design/icons";
 import "./style.css";
 import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
+import {MsgContext} from '../../../App.js';
 const { useToken } = theme;
 
 const UploadFiles = () => {
+  const { msg, setMsg } = useContext(MsgContext);
   const { token } = useToken();
   const [text, setText] = useState("");
-  const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-  
+console.log(msg);
+  const handleSubmit = async () => {
     const formData = new FormData();
-    formData.append('image', imageUrl);
-    formData.append('text', text);
-      if (text === "") {
+    formData.append("image", imageUrl);
+    formData.append("text", text);
+    if (text === "") {
       console.log("Please input description!");
       return;
     } else {
       try {
-        const responseImage = await axios.post('/api/v1/addpostsimage', formData);
+        const responseImage = await axios.post(
+          "/api/v1/addpostsimage",
+          formData
+        );
         console.log(responseImage.data.message);
+        setMsg(responseImage.data.message);
+        
       } catch (err) {
         console.error(err);
       }
     }
   };
 
-
   // handle image
   const handleImage = (e) => {
     setImageUrl(e.target.files[0]);
   };
 
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : ""}
-      <Avatar size={30} icon={<SvgComponent />} />
-      <Typography
-        style={{
-          fontWeight: "bold",
-          fontSize: "16px",
-        }}
-      >
-        Add Media
-      </Typography>
-      <Typography
-        style={{
-          fontWeight: "bold",
-          opacity: "0.7",
-        }}
-      >
-        or drag and drop
-      </Typography>
-    </div>
-  );
+  // const uploadButton = (
+  //   <div>
+  //     {loading ? <LoadingOutlined /> : ""}
+  //     <Avatar size={30} icon={<SvgComponent />} />
+  //     <Typography
+  //       style={{
+  //         fontWeight: "bold",
+  //         fontSize: "16px",
+  //       }}
+  //     >
+  //       Add Media
+  //     </Typography>
+  //     <Typography
+  //       style={{
+  //         fontWeight: "bold",
+  //         opacity: "0.7",
+  //       }}
+  //     >
+  //       or drag and drop
+  //     </Typography>
+  //   </div>
+  // );
 
   return (
     <>
@@ -132,17 +132,15 @@ const UploadFiles = () => {
             display: "flex",
             justifyContent: "center",
           }}
-          >
+        >
           <Form.Item onSubmit={handleSubmit} encType="multipart/form-data">
-          <input type="file" name="image" accept="image/*" onChange={handleImage} />
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleImage}
+            />
           </Form.Item>
-          {/* {imageUrl ? (
-            <>
-                <Image src={imageUrl} alt="Image" width={200} preview={false} />
-              </>
-            ) : (
-              uploadButton
-            )} */}
         </Col>
         <Col xs={24} md={24} lg={24} xl={24}>
           {imageUrl ? (

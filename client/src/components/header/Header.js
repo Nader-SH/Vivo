@@ -634,17 +634,13 @@ const HeaderComponent = () => {
             </Button>
           </Col>
           <Col xs={4}>
-            <Avatar
-              size={50}
-              src={
-                userData.user_image === "UserOutlined"
-                  ? ""
-                  : userData.user_image
-              }
-              icon={
-                userData.user_image === "UserOutlined" ? <UserOutlined /> : ""
-              }
-            />
+            {userData === null ? (
+              ""
+            ) : userData.user_image === "UserOutlined" ? (
+              <Avatar size={50} icon={<UserOutlined />} />
+            ) : (
+              <Avatar size={50} src={userData.user_image} />
+            )}
           </Col>
         </Row>
       </Col>

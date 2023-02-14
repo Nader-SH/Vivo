@@ -3,7 +3,6 @@ import sequelize from "../database/config/connection.js";
 export default class Storys extends Model {
   id;
   image;
-  date;
   user_id;
 }
 Storys.init(
@@ -14,10 +13,6 @@ Storys.init(
       autoIncrement: true,
     },
     image: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    date: {
       type: DataTypes.STRING,
       allowNull: false,
     },

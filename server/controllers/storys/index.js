@@ -1,2 +1,3 @@
 import getStorys from "./storys.js";
-export { getStorys };
+import addStorysImage from "./addStorysImage.js"
+export { getStorys ,addStorysImage };
