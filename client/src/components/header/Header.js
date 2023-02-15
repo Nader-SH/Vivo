@@ -59,6 +59,7 @@ const navButtons = [
 const HeaderComponent = () => {
   const { userData, setUserData } = React.useContext(UserContext);
   const { data, setData } = useContext(CartData);
+  const [imageUser,setImageUser] = useState(<Avatar size={50} icon={<UserOutlined />} />);
   const { token } = useToken();
   const colors = `linear-gradient(270deg,${token.colorBgBase},${token.colorPrimary})`;
   let location = useLocation();
@@ -465,7 +466,6 @@ const HeaderComponent = () => {
                                           fontSize: "16px",
                                         }}
                                       >
-                                        {" "}
                                         {e.color}
                                       </span>
                                     </Typography>
@@ -636,11 +636,12 @@ const HeaderComponent = () => {
           <Col xs={4}>
             {userData === null ? (
               ""
-            ) : userData.user_image === "UserOutlined" ? (
-              <Avatar size={50} icon={<UserOutlined />} />
+            ) : userData.user_image !== "UserOutlined" ? (
+              setImageUser(<Avatar size={50} src={userData.user_image} />)
             ) : (
-              <Avatar size={50} src={userData.user_image} />
+              ""
             )}
+            {imageUser}
           </Col>
         </Row>
       </Col>

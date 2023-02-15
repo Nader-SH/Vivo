@@ -14,7 +14,7 @@ import {
   theme,
 } from "antd";
 import friend from "../../assets/Friend.png";
-import { MoreOutlined } from "@ant-design/icons";
+import { MoreOutlined, UserOutlined } from "@ant-design/icons";
 import { IoMdShareAlt } from "react-icons/io";
 import { BiCommentDetail } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
@@ -23,7 +23,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import Comments from "./Comments.js";
 import { Spin } from "antd";
 import TimeAgo from "javascript-time-ago";
-
+import { UserContext } from "../../App.js";
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
 import { MsgContext } from "../../App.js";
@@ -33,6 +33,7 @@ const { useToken } = theme;
 const ShowPsots = () => {
   TimeAgo.addDefaultLocale(en);
   TimeAgo.addLocale(ru);
+  const { userData, setUserData } = React.useContext(UserContext);
   const { msg, setMsg } = useContext(MsgContext);
   const [comment, setComment] = useState("");
   const [postId, setPostId] = useState();
@@ -43,7 +44,10 @@ const ShowPsots = () => {
   const [dataPostAll, setDataPostAll] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setIsLoading] = useState(false);
-  
+  const [imageUser, setImageUser] = useState(
+    <Avatar size={50} icon={<UserOutlined />} />
+  );
+
   const antIcon = (
     <LoadingOutlined
       style={{
@@ -58,24 +62,24 @@ const ShowPsots = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
-useEffect(() => {
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(`/api/v1/getposts/?page=${page}`);
-      setDataPostAll(response.data.rows);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-      setMsg(null)
-    }
-  };
-  fetchData();
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [msg])
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(`/api/v1/getposts/?page=${page}`);
+        setDataPostAll(response.data.rows);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+        setMsg(null);
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [msg]);
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -85,7 +89,7 @@ useEffect(() => {
       console.error(error);
     } finally {
       setIsLoading(false);
-      setMsg(null)
+      setMsg(null);
     }
   };
 
@@ -115,7 +119,7 @@ useEffect(() => {
       return;
     } else {
       try {
-       await axios.post("/api/v1/addcomment", {
+        await axios.post("/api/v1/addcomment", {
           text_comment: comment,
           post_id: postId,
         });
@@ -147,7 +151,11 @@ useEffect(() => {
           >
             <Row wrap={false}>
               <Col xs={4} sm={3} md={2} lg={2} xl={2}>
-                <Avatar size={64} src={e.User.user_image} />
+                {e.User.user_image === "UserOutlined" ? (
+                  <Avatar size={50} icon={<UserOutlined />} />
+                ) : (
+                  <Avatar size={50} src={e.User.user_image} />
+                )}
               </Col>
               <Col xs={14} sm={19} md={20} lg={20} xl={20}>
                 <Typography

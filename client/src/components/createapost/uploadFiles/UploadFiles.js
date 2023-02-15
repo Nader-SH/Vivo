@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   // Avatar,
   Col,
@@ -8,39 +8,43 @@ import {
   Form,
   Button,
 } from "antd";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import SvgComponent from "../../svg/AddImage";
 // import { LoadingOutlined } from "@ant-design/icons";
 import "./style.css";
 import TextArea from "antd/es/input/TextArea";
 import axios from "axios";
-import {MsgContext} from '../../../App.js';
+import { MsgContext } from "../../../App.js";
 const { useToken } = theme;
 
 const UploadFiles = () => {
   const { msg, setMsg } = useContext(MsgContext);
+  const [errMsg, setErrMsg] = useState("");
   const { token } = useToken();
   const [text, setText] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
-console.log(msg);
   const handleSubmit = async () => {
     const formData = new FormData();
     formData.append("image", imageUrl);
     formData.append("text", text);
-    if (text === "") {
-      console.log("Please input description!");
-      return;
-    } else {
-      try {
-        const responseImage = await axios.post(
-          "/api/v1/addpostsimage",
-          formData
-        );
-        console.log(responseImage.data.message);
-        setMsg(responseImage.data.message);
-        
-      } catch (err) {
-        console.error(err);
+    try {
+      if (text === "") {
+        throw new Error("Please input description!");
+      } else {
+        try {
+          const responseImage = await axios.post(
+            "/api/v1/addpostsimage",
+            formData
+          );
+          setMsg(responseImage.data.message);
+          setErrMsg(responseImage.data.message);
+        } catch (err) {
+          setErrMsg(err.message);
+        }
       }
+    } catch (err) {
+      setErrMsg(err.message);
     }
   };
 
@@ -71,6 +75,56 @@ console.log(msg);
   //     </Typography>
   //   </div>
   // );
+
+  useEffect(() => {
+    if (errMsg === "") {
+      return;
+    } else if (errMsg === "Please input description!") {
+      toast.error("Please input description!", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else if (errMsg === "Request failed with status code 500") {
+      toast.error("Something went wrong", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else if (errMsg === "Post and Image Add Success") {
+      toast.success(errMsg, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }else if (errMsg === "Post Add Success"){
+      toast.success(errMsg, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  }, [errMsg]);
 
   return (
     <>
@@ -163,6 +217,18 @@ console.log(msg);
             ""
           )}
         </Col>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </Row>
     </>
   );

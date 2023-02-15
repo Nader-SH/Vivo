@@ -10,7 +10,6 @@ const SignAndLogin = () => {
   const colors = `linear-gradient(270deg,${token.colorBgBase},${token.colorPrimary})`;
 
   const onChange = (key) => {
-    console.log(key);
   };
   return (
     <div

@@ -1,15 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Input, Button, theme, Row, Col, Avatar, Typography, Form } from "antd";
 import "./style.css";
 import friend from "../../../assets/Friend.png";
 import { PostData } from "../../../dashboard/HomePageView";
 import { MsgContext } from "../../../App.js";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../../../App.js";
+import { UserOutlined } from "@ant-design/icons";
 const { TextArea } = Input;
 const { useToken } = theme;
 const PostForm = () => {
   // eslint-disable-next-line no-unused-vars
+  const { userData, setUserData } = React.useContext(UserContext);
+  const [imageUser,setImageUser] = useState(<Avatar size={50} icon={<UserOutlined />} />);
   const { msg, setMsg } = useContext(MsgContext);
+  const [errMsg, setErrMsg] = useState("");
   const [form] = Form.useForm();
   const { dataPost, setDataPost } = useContext(PostData);
   const { token } = useToken();
@@ -18,32 +25,83 @@ const PostForm = () => {
   const [errorReaquireColor, setErrorReaquireColor] = useState("");
 
   const requireTextPost = () => {
-    if (text === "") {
-      setErrorReaquireText("Please input description!");
-      setErrorReaquireColor("error");
-      return;
+    try{
+
+      if (text === "") {
+        setErrorReaquireColor("error");
+        throw new Error("Please input description post!");
     } else {
       axios
         .post("/api/v1/addposts", { text_post: text })
         .then((response) => {
-          setMsg(response.data.message)
+          setMsg(response.data.message);
+          setErrMsg(response.data.message);
         })
         .catch((err) => {
-          console.log(err);
+          setErrMsg(err.message);
         });
       setErrorReaquireText("");
       setDataPost([text, ...dataPost]);
       setErrorReaquireColor("");
       form.resetFields();
     }
+    }catch(err){
+      setErrMsg(err.message);
+    }
   };
+
+  useEffect(() => {
+    if (errMsg === "") {
+      return;
+    }else if (errMsg === "Please input description post!") {
+      toast.error("Something went wrong", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else if (errMsg === "Request failed with status code 500") {
+      toast.error("Something went wrong", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else if (errMsg === "Post Add Success") {
+      toast.success(errMsg, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  }, [errMsg]);
 
   return (
     <>
       <Form form={form}>
         <Row wrap={false} align="middle">
           <Col xs={4} md={2} lg={1} xl={1}>
-            <Avatar size={50} src={friend} />
+          {userData === null ? (
+              ""
+            ) : userData.user_image !== "UserOutlined" ? (
+              setImageUser(<Avatar size={50} src={userData.user_image} />)
+            ) : (
+              ""
+            )}
+            {imageUser}
           </Col>
           <Col xs={16} md={20} lg={20} xl={22}>
             <Form.Item
@@ -96,6 +154,18 @@ const PostForm = () => {
               </Button>
             </Form.Item>
           </Col>
+          <ToastContainer
+            position="bottom-left"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
         </Row>
       </Form>
     </>

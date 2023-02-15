@@ -24,7 +24,7 @@ const Comments = ({ comment, fetchDataNormal }) => {
 
   const getCommentReply = async () => {
     if (commentReply === "") {
-      console.log("Please input description!");
+      return;
       return;
     } else {
       try {

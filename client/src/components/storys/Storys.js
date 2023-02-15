@@ -5,6 +5,8 @@ import { Image, Avatar, Typography, Row, Col, Spin, Button } from "antd";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { LoadingOutlined, PlusCircleFilled } from "@ant-design/icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Storys = () => {
   const [storysData, setStorysData] = useState([]);
   const [page, setPage] = useState(1);
@@ -25,7 +27,7 @@ const Storys = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const handleScroll = (event) => {
@@ -49,12 +51,12 @@ const Storys = () => {
         console.error(error);
       } finally {
         setIsLoading(false);
-        setMsg('')
+        setMsg("");
       }
     };
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [msg])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [msg]);
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -80,19 +82,45 @@ const Storys = () => {
     formData.append("image", image);
     const sendDataForm = async () => {
       try {
-        console.log("send Data");
         const responseImage = await axios.post(
           "/api/v1/addstorysimage",
           formData
         );
         setMsg(responseImage.data.message);
-        console.log(responseImage.data.message);
       } catch (err) {
-        console.error(err);
+        setMsg(err.message);
       }
     };
     sendDataForm();
   }, [image]);
+
+  useEffect(() => {
+    if (msg === ''){
+      return ;
+    }else if (msg === "Request failed with status code 500"){
+      toast.error('Something went wrong', {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+    } else{
+      toast.success(msg, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+}, [msg])
   return (
     <>
       <Row>
@@ -141,9 +169,6 @@ const Storys = () => {
                 <Row
                   style={{
                     cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    console.log("open");
                   }}
                 >
                   <Col
@@ -235,6 +260,18 @@ const Storys = () => {
               />
             )}
           </Col>
+          <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         </div>
       </Row>
     </>

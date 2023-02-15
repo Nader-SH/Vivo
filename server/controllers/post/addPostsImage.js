@@ -1,4 +1,4 @@
-import { addPostsImageQuery } from "../../queries/post/index.js";
+import { addPostsImageQuery ,addPostsQuery} from "../../queries/post/index.js";
 import { v2 as cloudinary } from "cloudinary";
 
 const addPostsImage = async (req, res, next) => {
@@ -6,7 +6,14 @@ const addPostsImage = async (req, res, next) => {
   const file = req.file;
   const { id } = req.user;
   if (!file) {
-    throw new Error("No file uploaded");
+    try {
+      await addPostsImageQuery({ text_post: text }, id);
+      return res.status(201).json({
+        message: "Post Add Success",
+      });
+    } catch (err) {
+      res.status(err.status || 500).json({ message: err.message });
+    }
   } else {
     cloudinary.config({
       cloud_name: "dylk90sig",
