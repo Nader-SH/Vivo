@@ -32,8 +32,10 @@ import Img2Svg from "../svg/Img2Svg";
 import Img3Svg from "../svg/Img3Svg";
 import Img4Svg from "../svg/Img4Svg";
 import Img5Svg from "../svg/Img5Svg";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../App.js";
+import axios from "axios";
+
 const { useToken } = theme;
 
 const navButtons = [
@@ -57,6 +59,7 @@ const navButtons = [
   },
 ];
 const HeaderComponent = () => {
+  const navigate = useNavigate();
   const { userData, setUserData } = React.useContext(UserContext);
   const { data, setData } = useContext(CartData);
   const [imageUser,setImageUser] = useState(<Avatar size={50} icon={<UserOutlined />} />);
@@ -70,6 +73,20 @@ const HeaderComponent = () => {
   const [total, setTotal] = useState(0);
   const [dataNum, setDataNum] = useState(0);
   const [hovred, setHovred] = useState(false);
+
+  const userDatafunc = async () => {
+    try {
+      const allDataUser = await axios.get("/api/v1/userdata");
+      setUserData(allDataUser.data)
+    } catch (err) {
+      navigate("/welcome");
+    }
+  };
+
+  useEffect(() => {
+    userDatafunc();
+  }, []);
+
   useEffect(() => {
     data === undefined || data.length === 0
       ? setDataNum(0)

@@ -25,10 +25,9 @@ const Comments = ({ comment, fetchDataNormal }) => {
   const getCommentReply = async () => {
     if (commentReply === "") {
       return;
-      return;
     } else {
       try {
-        const response = await axios.post("/api/v1/addcommentreply", {
+        await axios.post("/api/v1/addcommentreply", {
           text_reply: commentReply,
           comment_id: commentReplyId,
         });

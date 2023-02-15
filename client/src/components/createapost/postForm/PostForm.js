@@ -93,7 +93,7 @@ const PostForm = () => {
     <>
       <Form form={form}>
         <Row wrap={false} align="middle">
-          <Col xs={4} md={2} lg={1} xl={1}>
+          <Col xs={4} md={2} lg={2} xl={2}>
           {userData === null ? (
               ""
             ) : userData.user_image !== "UserOutlined" ? (
@@ -103,7 +103,7 @@ const PostForm = () => {
             )}
             {imageUser}
           </Col>
-          <Col xs={16} md={20} lg={20} xl={22}>
+          <Col xs={16} md={20} lg={20} xl={21}>
             <Form.Item
               name="note"
               rules={[

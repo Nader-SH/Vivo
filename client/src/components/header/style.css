@@ -256,3 +256,7 @@
   align-items: center !important;
   justify-content: space-between !important;
 }
+
+:where(.css-dev-only-do-not-override-1ax8zqu).ant-row-center {
+  justify-content: flex-start !important;
+}

@@ -34,6 +34,7 @@ const ShowPsots = () => {
   TimeAgo.addDefaultLocale(en);
   TimeAgo.addLocale(ru);
   const { userData, setUserData } = React.useContext(UserContext);
+  console.log(userData);
   const { msg, setMsg } = useContext(MsgContext);
   const [comment, setComment] = useState("");
   const [postId, setPostId] = useState();
@@ -370,11 +371,16 @@ const ShowPsots = () => {
           />
           <Col span={24}>
             <Form form={form}>
-              <Row justify="space-between">
-                <Col xs={3} sm={2} md={1} lg={1} xl={1}>
-                  <Avatar size={50} src={friend} />
+              <Row>
+                <Col xs={4} sm={2} md={2} lg={2} xl={1}>
+                  {
+                    userData.user_image === "UserOutlined" ? 
+                    <Avatar size={50} icon={<UserOutlined />} />
+                    : 
+                    <Avatar size={50} src={userData.user_image} />
+                  }
                 </Col>
-                <Col xs={12} sm={16} md={19} lg={19} xl={19}>
+                <Col xs={14} sm={18} md={19} lg={19} xl={20}>
                   <Form.Item
                     name="note"
                     rules={[

@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { createContext, useEffect, useState } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useNavigate } from "react-router-dom";
 import HomePageView from "./dashboard/HomePageView";
 import MarketPlace from "./dashboard/MarketPlaceView";
 import Metaverse from "./dashboard/MetaverseView";
@@ -17,19 +17,6 @@ function App() {
   const [userData, setUserData] = useState(null);
   const [data, setData] = useState([]);
   const [msg,setMsg] = useState(null);
-
-  const userDatafunc = async () => {
-    try {
-      const allDataUser = await axios.get("/api/v1/userdata");
-      setUserData(allDataUser.data)
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    userDatafunc();
-  }, []);
 
 
   const router = createBrowserRouter([

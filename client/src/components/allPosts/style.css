@@ -28,3 +28,6 @@
   align-items: center;
   display: inline-grid;
 }
+:where(.css-dev-only-do-not-override-1ax8zqu).ant-row-space-between {
+  justify-content: flex-start !important;
+}
