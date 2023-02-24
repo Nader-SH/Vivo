@@ -56,10 +56,10 @@ const Comments = ({ comment, fetchDataNormal }) => {
             width: "100%",
           }}
         >
-          {comment.User.user_image === "UserOutlined" ? (
+          {comment.User?.user_image === "UserOutlined" ? (
             <Avatar size={50} icon={<UserOutlined />} />
           ) : (
-            <Avatar size={50} src={comment.User.user_image} />
+            <Avatar size={50} src={comment.User?.user_image} />
           )}
         </Col>
         <Col xs={15} sm={19} md={19} lg={19} xl={20} className="commentText">
@@ -232,10 +232,9 @@ const Comments = ({ comment, fetchDataNormal }) => {
             ? showReplies === true
               ? comment.CommentReplies.map((reply) => {
                   return (
-                    <Row>
                       <Row wrap={false} className="replyData">
                         <Col xs={3} sm={3} md={3} lg={3} xl={2}>
-                          <Avatar size={50} src={reply.User.user_image} />
+                          <Avatar size={50} src={reply.User?.user_image} />
                         </Col>
                         <Col
                           xs={18}
@@ -277,10 +276,6 @@ const Comments = ({ comment, fetchDataNormal }) => {
                           </Typography>
                         </Col>
                       </Row>
-                      <Row>
-                        <Col></Col>
-                      </Row>
-                    </Row>
                   );
                 })
               : ""

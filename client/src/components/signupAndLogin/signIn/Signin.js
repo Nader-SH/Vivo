@@ -42,7 +42,10 @@ const SignIn = () => {
       .post("/api/v1/signin", { data: value.user })
       .then(function (response) {
         setError();
-        navigate("/");
+        setUserData(response.data.data);
+        if(userData !== null){
+          navigate("/");
+        }
       })
       .catch(function (error) {
         setError(error);

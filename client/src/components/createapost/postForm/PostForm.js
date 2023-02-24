@@ -18,15 +18,13 @@ const PostForm = () => {
   const { msg, setMsg } = useContext(MsgContext);
   const [errMsg, setErrMsg] = useState("");
   const [form] = Form.useForm();
-  const { dataPost, setDataPost } = useContext(PostData);
   const { token } = useToken();
   const [text, setText] = useState("");
   const [errorReaquireText, setErrorReaquireText] = useState("");
   const [errorReaquireColor, setErrorReaquireColor] = useState("");
-
+console.log(userData);
   const requireTextPost = () => {
     try{
-
       if (text === "") {
         setErrorReaquireColor("error");
         throw new Error("Please input description post!");
@@ -41,7 +39,6 @@ const PostForm = () => {
           setErrMsg(err.message);
         });
       setErrorReaquireText("");
-      setDataPost([text, ...dataPost]);
       setErrorReaquireColor("");
       form.resetFields();
     }
@@ -96,8 +93,8 @@ const PostForm = () => {
           <Col xs={4} md={2} lg={2} xl={2}>
           {userData === null ? (
               ""
-            ) : userData.user_image !== "UserOutlined" ? (
-              setImageUser(<Avatar size={50} src={userData.user_image} />)
+            ) : userData?.user_image !== "UserOutlined" ? (
+              setImageUser(<Avatar size={50} src={userData?.user_image} />)
             ) : (
               ""
             )}

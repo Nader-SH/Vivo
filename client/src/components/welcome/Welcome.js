@@ -4,12 +4,32 @@ import logo from "../../assets/vimeo.png";
 import nameLogo from "../../assets/vivo.png";
 import PhoneSvge from "../svg/PhoneSvg";
 import mapOfWorld from  "../../assets/mapOfWorld.png";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {UserContext} from "../../App.js";
+import React, { useEffect } from "react";
+import axios from "axios";
 const { useToken } = theme;
 // xs={16} md={16} lg={16} xl={16}
 const Welcome = () => {
+  const navigate = useNavigate();
   const { token } = useToken();
+  const { userData, setUserData } = React.useContext(UserContext);
   const colors = `linear-gradient(270deg,${token.colorBgBase},${token.colorPrimary})`;
+  const userDatafunc = async () => {
+    try {
+      const allDataUser = await axios.get("/api/v1/userdata");
+      setUserData(allDataUser.data);
+    } catch (err) {
+      navigate("/welcome");
+    }
+  };
+
+  useEffect(() => {
+    userDatafunc();
+    if(userData !== null){
+      navigate("/");
+    }
+  }, [userData])
   return (
     <div className="backgroundImage" style={{
       background: `url( ${ mapOfWorld }`,

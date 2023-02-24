@@ -11,6 +11,8 @@ import ShopProduct from "./shopProduct.js";
 import Catagory from "./categorie.js";
 import VirtualItem from "./virtualItem.js";
 import Storys from "./storys.js";
+import ListChat from "./listChat.js";
+
 // Relations Here
 // ! post , comment and comment reply
 User.hasMany(Post, { foreignKey: "user_id" });
@@ -37,9 +39,13 @@ Storys.belongsTo(User, { foreignKey: "user_id" });
 User.hasMany(Chat, { foreignKey: "user_id" });
 Chat.belongsTo(User, { foreignKey: "user_id" });
 // !
+// ! user with ListChat
+User.hasMany(ListChat);
+ListChat.belongsTo(User)
+//! 
 // ! following and  user
-UserFollow.belongsToMany(User, { through: "user_id" });
-User.belongsToMany(UserFollow, { through: "user_id" });
+User.hasMany(UserFollow, { foreignKey: "user_id" });
+UserFollow.belongsTo(User, { foreignKey: "user_id" });
 // ! user and businesses
 User.hasMany(Businesses, { foreignKey: "user_id" });
 Businesses.belongsTo(User, { foreignKey: "user_id" });
@@ -85,5 +91,6 @@ export {
   Catagory,
   VirtualItem,
   Storys,
+  ListChat,
   sequelize,
 };

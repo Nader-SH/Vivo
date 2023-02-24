@@ -1,9 +1,8 @@
-import { Model, DataTypes } from "sequelize";
+import { Model, DataTypes ,Sequelize} from "sequelize";
 import sequelize from "../database/config/connection.js";
 export default class Chat extends Model {
   id;
   text_chat;
-  chat_date;
   message_sender_id;
   message_receive_id;
 }
@@ -18,10 +17,6 @@ Chat.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    chat_date: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     message_sender_id:{
       type: DataTypes.INTEGER,
       unique: false,
@@ -29,6 +24,11 @@ Chat.init(
     message_receive_id:{
       type: DataTypes.INTEGER,
       unique: false,
+    },
+    timestamp: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.NOW,
     },
   },
   { sequelize }

@@ -12,6 +12,7 @@ import {
   Catagory as catagoryModel,
   VirtualItem as virtualItemModel,
   Storys as storysModel,
+  ListChat as listChatModel
 } from "../../models/index.js";
 
 import {

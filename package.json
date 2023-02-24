@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon ./server/index.js",
+    "devapp": "cross-env NODE_ENV=development nodemon ./server/app.js",
     "start": "cross-env NODE_ENV=production nodemon ./dist/index.js",
     "buildDb": "cross-env NODE_ENV=development node server/database/config/buildDb.js",
     "buildSeeds": "cross-env NODE_ENV=development node server/database/seeds/buildSeeds.js",
@@ -31,6 +32,7 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "react-google-button": "^0.7.2",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "socket.io": "^4.6.0"
   }
 }

@@ -498,5 +498,30 @@
     "user_follow": 7,
     "following_him_since": "05/27/2022",
     "user_id": 10
+  },
+  {
+    "user_follow": 101,
+    "following_him_since": "07/16/2022",
+    "user_id": 100
+  },
+  {
+    "user_follow": 101,
+    "following_him_since": "07/16/2022",
+    "user_id": 3
+  },
+  {
+    "user_follow": 101,
+    "following_him_since": "07/16/2022",
+    "user_id": 5
+  },
+  {
+    "user_follow": 13,
+    "following_him_since": "07/16/2022",
+    "user_id": 101
+  },
+  {
+    "user_follow": 5,
+    "following_him_since": "07/16/2022",
+    "user_id": 101
   }
 ]

@@ -9,8 +9,6 @@ const timeStoryQuery = async () => {
         [Op.lt]: twentyFourHoursAgo,
       },
     },
-  }).then((numRowsDeleted) => {
-    console.log(`Deleted ${numRowsDeleted} expired stories.`);
-  });
+  })
 };
 export default timeStoryQuery;

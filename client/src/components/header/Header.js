@@ -59,7 +59,6 @@ const navButtons = [
   },
 ];
 const HeaderComponent = () => {
-  const navigate = useNavigate();
   const { userData, setUserData } = React.useContext(UserContext);
   const { data, setData } = useContext(CartData);
   const [imageUser,setImageUser] = useState(<Avatar size={50} icon={<UserOutlined />} />);
@@ -69,23 +68,12 @@ const HeaderComponent = () => {
   let splitedUrl = location.pathname.split("/")[1];
   const [activeBut, setActiveBut] = useState(1);
   const [endPointMark, setEndPointMark] = useState(splitedUrl);
-
   const [total, setTotal] = useState(0);
   const [dataNum, setDataNum] = useState(0);
   const [hovred, setHovred] = useState(false);
-
-  const userDatafunc = async () => {
-    try {
-      const allDataUser = await axios.get("/api/v1/userdata");
-      setUserData(allDataUser.data)
-    } catch (err) {
-      navigate("/welcome");
-    }
-  };
-
-  useEffect(() => {
-    userDatafunc();
-  }, []);
+  console.log("************");
+  console.log(userData);
+  console.log("************");
 
   useEffect(() => {
     data === undefined || data.length === 0
@@ -216,11 +204,14 @@ const HeaderComponent = () => {
               <BellOutlined />
             </Button>
           </Col>
+          <Link to="/chat">
           <Col xs={0} md={0} lg={0} xl={6}>
             <Button type="text" className="leftSideHeader">
               <MessageOutlined />
             </Button>
           </Col>
+          </Link>
+
           <Col xs={0} md={0} lg={0} xl={6}>
             <Button
               className="leftSideHeader"
@@ -424,8 +415,8 @@ const HeaderComponent = () => {
                                             fontSize: "16px",
                                           }}
                                         >
-                                          {" "}
-                                          Qty :{" "}
+                                        
+                                          Qty :
                                         </span>
                                         <span
                                           style={{
@@ -454,8 +445,7 @@ const HeaderComponent = () => {
                                             fontSize: "16px",
                                           }}
                                         >
-                                          {" "}
-                                          {e.size}{" "}
+                                          {e.size}
                                         </span>
                                       </Typography>
                                     </div>
@@ -653,8 +643,8 @@ const HeaderComponent = () => {
           <Col xs={4}>
             {userData === null ? (
               ""
-            ) : userData.user_image !== "UserOutlined" ? (
-              setImageUser(<Avatar size={50} src={userData.user_image} />)
+            ) : userData?.user_image !== "UserOutlined" ? (
+              setImageUser(<Avatar size={50} src={userData?.user_image} />)
             ) : (
               ""
             )}

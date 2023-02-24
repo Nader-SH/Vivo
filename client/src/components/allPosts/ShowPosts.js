@@ -34,7 +34,6 @@ const ShowPsots = () => {
   TimeAgo.addDefaultLocale(en);
   TimeAgo.addLocale(ru);
   const { userData, setUserData } = React.useContext(UserContext);
-  console.log(userData);
   const { msg, setMsg } = useContext(MsgContext);
   const [comment, setComment] = useState("");
   const [postId, setPostId] = useState();
@@ -374,10 +373,10 @@ const ShowPsots = () => {
               <Row>
                 <Col xs={4} sm={2} md={2} lg={2} xl={1}>
                   {
-                    userData.user_image === "UserOutlined" ? 
+                    userData?.user_image === "UserOutlined" ? 
                     <Avatar size={50} icon={<UserOutlined />} />
                     : 
-                    <Avatar size={50} src={userData.user_image} />
+                    <Avatar size={50} src={userData?.user_image} />
                   }
                 </Col>
                 <Col xs={14} sm={18} md={19} lg={19} xl={20}>

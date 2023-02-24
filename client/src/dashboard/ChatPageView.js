@@ -1,11 +1,10 @@
-import Cart from "../components/cart/Cart";
 import HeaderComponent from "../components/header/Header";
+import Chat from "../components/chat/Chat";
 import { UserContext } from "../App.js";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import axios from "axios";
-
-const CartPageView = () => {
+const ChatPageView = () => {
   const navigate = useNavigate();
   const { userData, setUserData } = useContext(UserContext);
   const userDatafunc = async () => {
@@ -28,7 +27,7 @@ const CartPageView = () => {
       }}
     >
       <div>
-        <HeaderComponent />
+        {/* <HeaderComponent /> */}
         <div
           className="contantCart"
           style={{
@@ -36,11 +35,11 @@ const CartPageView = () => {
             marginBottom: "30px",
           }}
         >
-          <Cart />
+          <Chat />
         </div>
       </div>
     </div>
   );
 };
 
-export default CartPageView;
+export default ChatPageView;
