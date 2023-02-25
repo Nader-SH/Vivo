@@ -13,8 +13,10 @@ const { TextArea } = Input;
 const { useToken } = theme;
 const PostForm = () => {
   // eslint-disable-next-line no-unused-vars
-  const { userData, setUserData } = React.useContext(UserContext);
-  const [imageUser,setImageUser] = useState(<Avatar size={50} icon={<UserOutlined />} />);
+  const { userData, setUserData } = useContext(UserContext);
+  const [imageUser, setImageUser] = useState(
+    <Avatar size={50} icon={<UserOutlined />} />
+  );
   const { msg, setMsg } = useContext(MsgContext);
   const [errMsg, setErrMsg] = useState("");
   const [form] = Form.useForm();
@@ -22,35 +24,48 @@ const PostForm = () => {
   const [text, setText] = useState("");
   const [errorReaquireText, setErrorReaquireText] = useState("");
   const [errorReaquireColor, setErrorReaquireColor] = useState("");
-console.log(userData);
+  console.log(userData);
   const requireTextPost = () => {
-    try{
-      if (text === "") {
-        setErrorReaquireColor("error");
-        throw new Error("Please input description post!");
+    if (userData === null) {
+      return;
     } else {
-      axios
-        .post("/api/v1/addposts", { text_post: text })
-        .then((response) => {
-          setMsg(response.data.message);
-          setErrMsg(response.data.message);
-        })
-        .catch((err) => {
-          setErrMsg(err.message);
-        });
-      setErrorReaquireText("");
-      setErrorReaquireColor("");
-      form.resetFields();
-    }
-    }catch(err){
-      setErrMsg(err.message);
+      try {
+        if (text === "") {
+          setErrorReaquireColor("error");
+          throw new Error("Please input description post!");
+        } else {
+          axios
+            .post("/api/v1/addposts", { text_post: text })
+            .then((response) => {
+              setMsg(response.data.message);
+              setErrMsg(response.data.message);
+            })
+            .catch((err) => {
+              setErrMsg(err.message);
+            });
+          setErrorReaquireText("");
+          setErrorReaquireColor("");
+          form.resetFields();
+        }
+      } catch (err) {
+        setErrMsg(err.message);
+      }
     }
   };
+useEffect(()=>{
+  if (userData === null) {
+    return;
+  } else {
+    if (userData.user_image !== "UserOutlined") {
+      setImageUser(<Avatar size={50} src={userData.user_image} />);
+    }
+  }
+},[userData])
 
   useEffect(() => {
     if (errMsg === "") {
       return;
-    }else if (errMsg === "Please input description post!") {
+    } else if (errMsg === "Please input description post!") {
       toast.error("Something went wrong", {
         position: "bottom-left",
         autoClose: 5000,
@@ -85,19 +100,12 @@ console.log(userData);
       });
     }
   }, [errMsg]);
-
+  console.log(userData);
   return (
     <>
       <Form form={form}>
         <Row wrap={false} align="middle">
           <Col xs={4} md={2} lg={2} xl={2}>
-          {userData === null ? (
-              ""
-            ) : userData?.user_image !== "UserOutlined" ? (
-              setImageUser(<Avatar size={50} src={userData?.user_image} />)
-            ) : (
-              ""
-            )}
             {imageUser}
           </Col>
           <Col xs={16} md={20} lg={20} xl={21}>

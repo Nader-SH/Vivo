@@ -74,7 +74,11 @@ const HeaderComponent = () => {
   console.log("************");
   console.log(userData);
   console.log("************");
-
+useEffect(()=>{
+if (userData === null){
+  setImageUser(<Avatar size={50} src={userData?.user_image} />)
+}
+},[userData])
   useEffect(() => {
     data === undefined || data.length === 0
       ? setDataNum(0)
@@ -106,6 +110,15 @@ const HeaderComponent = () => {
     });
     setTotal(sum);
   };
+  useEffect(()=>{
+    if (userData === null) {
+      return;
+    } else {
+      if (userData.user_image !== "UserOutlined") {
+        setImageUser(<Avatar size={50} src={userData.user_image} />);
+      }
+    }
+  },[userData])
 
   return (
     <Row
@@ -641,13 +654,6 @@ const HeaderComponent = () => {
             </Button>
           </Col>
           <Col xs={4}>
-            {userData === null ? (
-              ""
-            ) : userData?.user_image !== "UserOutlined" ? (
-              setImageUser(<Avatar size={50} src={userData?.user_image} />)
-            ) : (
-              ""
-            )}
             {imageUser}
           </Col>
         </Row>
