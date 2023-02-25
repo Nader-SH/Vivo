@@ -47,7 +47,7 @@ const ShowPsots = () => {
   const [imageUser, setImageUser] = useState(
     <Avatar size={50} icon={<UserOutlined />} />
   );
-
+  console.log(dataPostAll);
   const antIcon = (
     <LoadingOutlined
       style={{
@@ -142,7 +142,7 @@ const ShowPsots = () => {
       }}
     >
       {dataPostAll.map((e) => (
-        <Row>
+        <Row key={e.id}>
           <Col
             span={24}
             style={{
@@ -372,12 +372,11 @@ const ShowPsots = () => {
             <Form form={form}>
               <Row>
                 <Col xs={4} sm={2} md={2} lg={2} xl={1}>
-                  {
-                    userData?.user_image === "UserOutlined" ? 
+                  {userData?.user_image === "UserOutlined" ? (
                     <Avatar size={50} icon={<UserOutlined />} />
-                    : 
+                  ) : (
                     <Avatar size={50} src={userData?.user_image} />
-                  }
+                  )}
                 </Col>
                 <Col xs={14} sm={18} md={19} lg={19} xl={20}>
                   <Form.Item
@@ -446,15 +445,25 @@ const ShowPsots = () => {
                         width: "100%",
                       }}
                     >
-                      {e.Comments.map((comment) => (
-                        <Comments
-                          comment={comment}
-                          fetchDataNormal={fetchDataNormal}
-                          style={{
-                            width: "100%",
-                          }}
-                        />
-                      ))}
+                      {e.Comments.length === 0
+                        ? 
+                        <Typography style={{
+                          fontWeight:'bold',
+                          textAlign:'center',
+                          fontSize:'18px',
+                        }}>
+                          No Comments Yet
+                        </Typography>
+                        : e.Comments.map((comment) => (
+                            <Comments
+                              key={comment.id}
+                              comment={comment}
+                              fetchDataNormal={fetchDataNormal}
+                              style={{
+                                width: "100%",
+                              }}
+                            />
+                          ))}
                     </Col>
                   </Row>
                 </Col>

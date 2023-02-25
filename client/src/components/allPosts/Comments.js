@@ -7,7 +7,6 @@ import TimeAgo from "javascript-time-ago";
 
 import ReactTimeAgo from "react-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-import ru from "javascript-time-ago/locale/ru.json";
 import { AiFillHeart } from "react-icons/ai";
 
 import axios from "axios";
@@ -15,7 +14,6 @@ const { useToken } = theme;
 
 const Comments = ({ comment, fetchDataNormal }) => {
   TimeAgo.addDefaultLocale(en);
-  TimeAgo.addLocale(ru);
   const { token } = useToken();
   const [showReplies, setShowRplies] = useState(false);
   const [commentReply, setCommentReply] = useState("");

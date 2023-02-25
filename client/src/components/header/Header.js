@@ -71,9 +71,7 @@ const HeaderComponent = () => {
   const [total, setTotal] = useState(0);
   const [dataNum, setDataNum] = useState(0);
   const [hovred, setHovred] = useState(false);
-  console.log("************");
-  console.log(userData);
-  console.log("************");
+  
 useEffect(()=>{
 if (userData === null){
   setImageUser(<Avatar size={50} src={userData?.user_image} />)

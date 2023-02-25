@@ -76,6 +76,7 @@ useEffect(()=>{
         progress: undefined,
         theme: "colored",
       });
+      setErrMsg('');
     } else if (errMsg === "Request failed with status code 500") {
       toast.error("Something went wrong", {
         position: "bottom-left",
@@ -87,6 +88,7 @@ useEffect(()=>{
         progress: undefined,
         theme: "colored",
       });
+      setErrMsg('');
     } else if (errMsg === "Post Add Success") {
       toast.success(errMsg, {
         position: "bottom-left",
@@ -99,6 +101,7 @@ useEffect(()=>{
         theme: "colored",
       });
     }
+    setErrMsg('');
   }, [errMsg]);
   console.log(userData);
   return (

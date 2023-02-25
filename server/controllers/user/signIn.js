@@ -38,10 +38,10 @@ const signIn = async (req, res, next) => {
       message: "Success",
     });
   } catch (err) {
-    if (err.name === "ValidationError") {
-      next(new CustomError(400, "Something went wrong, Try again"));
-    }
-    next(err);
+    // if (err.name === "ValidationError") {
+    //   next(new CustomError(400, "Something went wrong, Try again"));
+    // }
+    next(CustomError(err));
   }
 };
 

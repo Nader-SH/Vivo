@@ -3,9 +3,11 @@ import { Button, Col, Form, Input, Row, Space } from "antd";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import GoogleButton from 'react-google-button';
-
+import React, { useContext, useEffect, useState } from "react";
+import GoogleButton from "react-google-button";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { errorTextSignUpSignIn } from "../../../App.js";
 const MyFormItemContext = React.createContext([]);
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
@@ -24,34 +26,44 @@ const MyFormItemGroup = ({ prefix, children }) => {
 };
 const MyFormItem = ({ name, ...props }) => {
   const prefixPath = React.useContext(MyFormItemContext);
+
   const concatName =
     name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
   return <Form.Item name={concatName} {...props} />;
 };
 const Signup = () => {
+  const { msgErr, setMsgErr } = useContext(errorTextSignUpSignIn);
   const [status, setStatusError] = useState("");
   const [passwordError, setPasswordError] = useState(false);
-  const navigate = useNavigate();
+
   const onFinish = (value) => {
     if (value.user.password === value.user.confirmPassword) {
       axios
         .post("/api/v1/signup", { data: value.user })
         .then(function (response) {
           setPasswordError(false);
+          setMsgErr(response.data.message);
         })
         .catch(function (error) {
           setStatusError(error);
           setPasswordError(false);
+          setMsgErr(error.response.data.message);
         });
     } else {
       setPasswordError(true);
+      setMsgErr("Password not the same")
     }
   };
 
   return (
     <Row>
       <Col xs={24} md={24} lg={24} xl={24}>
-        <Form name="form_item_path" layout="vertical" onFinish={onFinish} className="widthInput">
+        <Form
+          name="form_item_path"
+          layout="vertical"
+          onFinish={onFinish}
+          className="widthInput"
+        >
           <MyFormItemGroup prefix={["user"]}>
             <MyFormItem name="email" label="Email">
               <Input
@@ -116,12 +128,19 @@ const Signup = () => {
           </Button>
         </Form>
       </Col>
-      <Col span={20} style={{
-        margin:'10px'
-      }}>
+      <Col
+        span={20}
+        style={{
+          margin: "10px",
+        }}
+      >
         <Row>
           <Col>
-          <GoogleButton onClick={() => { console.log('Google button clicked') }} />
+            <GoogleButton
+              onClick={() => {
+                console.log("Google button clicked");
+              }}
+            />
           </Col>
         </Row>
       </Col>
