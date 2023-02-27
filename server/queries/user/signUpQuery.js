@@ -12,5 +12,11 @@ const signUpQuery = async (data, hashed) =>
     ...data,
     password: hashed,
   });
+const signUpGoogleQuery = async (name, picture, email) =>
+  User.create({
+    user_name: name,
+    user_image: picture,
+    email: email,
+  });
 
-export { signUpQuery, findUserEmail };
+export { signUpQuery, findUserEmail, signUpGoogleQuery };

@@ -28,7 +28,7 @@ User.init(
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     user_image: {
       type: DataTypes.STRING,

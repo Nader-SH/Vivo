@@ -5,8 +5,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import jwt_decode from "jwt-decode";
 import { UserContext } from "../../../App.js";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
 const MyFormItemContext = React.createContext([]);
 function toArr(str) {
@@ -36,14 +37,14 @@ const SignIn = () => {
   const [status, setStatus] = useState("done");
   const navigate = useNavigate();
   const [error, setError] = useState();
-  
+
   const onFinish = (value) => {
     axios
       .post("/api/v1/signin", { data: value.user })
       .then(function (response) {
         setError();
         setUserData(response.data.data);
-        if(userData !== null){
+        if (userData !== null) {
           navigate("/");
         }
       })
@@ -51,7 +52,20 @@ const SignIn = () => {
         setError(error);
       });
   };
-
+  const signInWithGoogle = (value) => {
+    axios
+      .post("/api/v1/signin", value)
+      .then((response) => {
+        setUserData(response.data.data);
+        if (userData !== null) {
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(error);
+      });
+  };
   return (
     <Row
       style={{
@@ -103,6 +117,17 @@ const SignIn = () => {
           </Button>
         </Form>
       </Col>
+      <Row>
+        <Col>
+          <GoogleOAuthProvider clientId="702655690076-uhh7dd5ken0njf0bmfk64rqf1obfhf4k.apps.googleusercontent.com">
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                signInWithGoogle(jwt_decode(credentialResponse.credential));
+              }}
+            />
+          </GoogleOAuthProvider>
+        </Col>
+      </Row>
     </Row>
   );
 };

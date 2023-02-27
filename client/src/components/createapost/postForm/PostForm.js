@@ -103,15 +103,11 @@ useEffect(()=>{
     }
     setErrMsg('');
   }, [errMsg]);
-  console.log(userData);
   return (
     <>
       <Form form={form}>
         <Row wrap={false} align="middle">
-          <Col xs={4} md={2} lg={2} xl={2}>
-            {imageUser}
-          </Col>
-          <Col xs={16} md={20} lg={20} xl={21}>
+          <Col xs={20} md={22} lg={22} xl={22}>
             <Form.Item
               name="note"
               rules={[
@@ -142,7 +138,10 @@ useEffect(()=>{
               {errorReaquireText}
             </Typography>
           </Col>
-          <Col xs={4} md={2} lg={1} xl={1}>
+          <Col xs={4} md={2} lg={2} xl={2} style={{
+            display:'flex',
+            justifyContent:'center',
+          }}>
             <Form.Item
               name="note"
               rules={[

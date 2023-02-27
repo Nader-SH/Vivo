@@ -17,6 +17,7 @@ const { useToken } = theme;
 const socket = io("http://localhost:8081");
 
 const Chat = () => {
+  
   const { token } = useToken();
   const { userData, setUserData } = useContext(UserContext);
   const [receiverId, setReceiverId] = useState(1);
@@ -36,6 +37,7 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on("typing", (isTyping, user) => {
+      console.log(isTyping);
       if (isTyping) {
         setIsTyping(isTyping);
         setTypingUsers(typingUsers.filter((u) => u !== user));
@@ -44,14 +46,16 @@ const Chat = () => {
         setTypingUsers([...typingUsers, user]);
       }
     });
-  }, [typingUsers]);
+  }, [typingUsers, isTyping]);
 
   const handleInputChange = (e) => {
     setMessageInput(e.target.value);
     if (e.target.value.length > 0 && !isTyping) {
       socket.emit("typing", true);
+      setIsTyping(!isTyping);
     } else if (e.target.value.length === 0 && isTyping) {
       socket.emit("typing", false);
+      setIsTyping(isTyping);
     }
   };
 
@@ -129,9 +133,9 @@ const Chat = () => {
         }}
       >
         {/* // here */}
-        {/* {messages.map((data)=>{
-          <Typography>data.message</Typography>
-        })} */}
+        {messages.map((data) => {
+         return (<Typography>{data.message}</Typography>)
+        })}
         {isTyping === true ? (
           <Typography
             style={{

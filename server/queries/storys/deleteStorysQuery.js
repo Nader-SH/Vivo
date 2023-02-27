@@ -1,11 +1,11 @@
-import { Post } from "../../models/index.js";
+import { Storys } from "../../models/index.js";
 
-const deleteCommentsQuery = async (commentId, id) =>
-  Post.destroy({
+const deleteStorysQuery = async (storyId, id) =>
+  Storys.destroy({
     where: {
-      id: commentId,
+      id: storyId,
       user_id: id,
     },
   });
 
-export default deleteCommentsQuery;
+export default deleteStorysQuery;

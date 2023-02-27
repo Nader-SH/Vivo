@@ -170,6 +170,7 @@ const UploadFiles = () => {
               type="submit"
               style={{
                 background: `linear-gradient(270deg,${token.colorPrimary},${token.colorBgBase})`,
+                color:'white',
               }}
               onClick={handleSubmit}
             >
