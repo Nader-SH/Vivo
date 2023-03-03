@@ -1,12 +1,10 @@
 import { getMessagesByReceiverIdQuery } from "../../queries/chat/index.js";
 
 const getMessagesByReceiverIdController = async (req, res) => {
-  console.log(req.params ,"params");
   const { id } = req.user;
-  
+
   try {
     const { receiverId } = req.params;
-
     const newMessage = await getMessagesByReceiverIdQuery(receiverId, id);
     res.status(201).json(newMessage);
   } catch (error) {

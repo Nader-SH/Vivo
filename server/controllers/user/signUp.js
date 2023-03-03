@@ -10,7 +10,6 @@ import pkg from "bcryptjs";
 const { hash } = pkg;
 
 const signUp = async (req, res, next) => {
-  console.log(req.body);
   const { name, picture, email } = req.body;
   if (req.body.picture) {
     try {

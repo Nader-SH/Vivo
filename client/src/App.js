@@ -14,9 +14,12 @@ import axios from "axios";
 export const CartData = createContext({ data: null, setData: null });
 export const UserContext = createContext({ userData: null, setUserData: null });
 export const MsgContext = createContext({ msg: null, setMsg: null });
-export const errorTextSignUpSignIn = createContext({ msgErr: null, setMsgErr: null });
+export const errorTextSignUpSignIn = createContext({
+  msgErr: null,
+  setMsgErr: null,
+});
 function App() {
-  const [ msgErr, setMsgErr] =useState(null);
+  const [msgErr, setMsgErr] = useState(null);
   const [userData, setUserData] = useState(null);
   const [data, setData] = useState([]);
   const [msg, setMsg] = useState(null);
@@ -60,15 +63,15 @@ function App() {
     },
   ]);
   return (
-    <errorTextSignUpSignIn.Provider value={{ msgErr, setMsgErr}}>
-      <UserContext.Provider value={{ userData, setUserData }}>
+    <UserContext.Provider value={{ userData, setUserData }}>
+      <errorTextSignUpSignIn.Provider value={{ msgErr, setMsgErr }}>
         <MsgContext.Provider value={{ msg, setMsg }}>
           <CartData.Provider value={{ data, setData }}>
             <RouterProvider router={router} />
           </CartData.Provider>
         </MsgContext.Provider>
-      </UserContext.Provider>
-    </errorTextSignUpSignIn.Provider>
+      </errorTextSignUpSignIn.Provider>
+    </UserContext.Provider>
   );
 }
 export default App;

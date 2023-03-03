@@ -47,7 +47,6 @@ const ShowPsots = () => {
   const [imageUser, setImageUser] = useState(
     <Avatar size={50} icon={<UserOutlined />} />
   );
-  console.log(dataPostAll);
   const antIcon = (
     <LoadingOutlined
       style={{

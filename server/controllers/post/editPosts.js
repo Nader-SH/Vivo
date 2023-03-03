@@ -5,7 +5,6 @@ import { CustomError } from "../../utils/index.js";
 
 const editPosts = async (req, res, next) => {
   const { id } = req.user;
-  console.log(req.body);
     try {
       await editPostsQuery(req.body, id);
 

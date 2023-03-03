@@ -1,7 +1,6 @@
 import { createMessageQuery } from "../../queries/chat/index.js";
 
 const createMessageController = async (req, res, next) => {
-  console.log(req.body, "createMessageController");
   const { message } = req.body;
   const { id } = req.user;
   const { receiverId } = req.params;

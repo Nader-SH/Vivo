@@ -20,7 +20,7 @@ UserFollow.init(
     },
     following_him_since: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   { sequelize }

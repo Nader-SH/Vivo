@@ -5,13 +5,13 @@ const getUserFollowQuery = async (id) => {
     where: {
       [Op.or]: [
         {
-          user_follow: { [Op.eq]: id },
+          user_follow: id,
         },
         {
-          user_id: { [Op.eq]: id },
+          user_id: id,
         },
       ],
     },
-  })
+  });
 };
 export default getUserFollowQuery;

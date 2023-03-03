@@ -24,7 +24,6 @@ const PostForm = () => {
   const [text, setText] = useState("");
   const [errorReaquireText, setErrorReaquireText] = useState("");
   const [errorReaquireColor, setErrorReaquireColor] = useState("");
-  console.log(userData);
   const requireTextPost = () => {
     if (userData === null) {
       return;

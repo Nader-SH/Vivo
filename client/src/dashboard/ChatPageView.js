@@ -27,7 +27,7 @@ const ChatPageView = () => {
       }}
     >
       <div>
-        {/* <HeaderComponent /> */}
+        <HeaderComponent />
         <div
           className="contantCart"
           style={{

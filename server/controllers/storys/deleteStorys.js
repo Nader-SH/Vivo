@@ -2,7 +2,6 @@ import { deleteStorysQuery } from "../../queries/storys/index.js";
 
 const deleteStorys = async (req, res, next) => {
   const { id } = req.user;
-  console.log(req.body);
   try {
     await deleteStorysQuery(req.body.id, id);
 
