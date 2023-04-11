@@ -29,13 +29,12 @@ const Chat = () => {
   const [chatUserId, setChatUserId] = useState(1);
   const [chatMessages, setChatMessages] = useState([]);
   const [socket, setSocket] = useState(null);
-
   useEffect(() => {
     setSocket(io("http://localhost:8081"));
     getListUsers();
   }, []);
   useEffect(() => {
-    socket?.emit("newUser", userData.id);
+    socket?.emit("newUser", userData?.id);
   }, [socket, userData]);
 
   const getListUsers = async () => {
@@ -70,7 +69,6 @@ const Chat = () => {
   };
   useEffect(() => {
     socket?.on("message", (message) => {
-      console.log(message);
       const message_sender_id = message.id;
       const message_receive_id = message.receiverId;
       const text_chat = message.message;
@@ -91,10 +89,6 @@ const Chat = () => {
       }
     });
   }, [socket]);
-  //   {
-  //     "typing": true,
-  //     "receiverId": "1"
-  // }
 
   const handleInputChange = (e) => {
     setMessageInput(e.target.value);
@@ -105,7 +99,6 @@ const Chat = () => {
     }
   };
   useEffect(() => {
-    console.log(chatUserId);
     if (chatUserId === null) {
       return;
     } else {
@@ -127,7 +120,7 @@ const Chat = () => {
     <Row>
       <Col xs={6} md={6} lg={6} xl={6}>
         <Row>
-          {userList.map((e) => (
+          {userList?.map((e) => (
             <Col
               key={e.id}
               id={e.id}
@@ -180,7 +173,7 @@ const Chat = () => {
         {/* // here */}
         {receiverId === 0
           ? "Select a User"
-          : chatMessages.map((data) => <DisplayChat data={data} />)}
+          : chatMessages?.map((data) => <DisplayChat data={data} />)}
         {typingUsers === true ? (
           <Col>
             <Typography

@@ -3,17 +3,13 @@ import Typography from "antd/es/typography/Typography";
 import React, { useState } from "react";
 import { Avatar, Button, Col, Input, Row, theme } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import TimeAgo from "javascript-time-ago";
-
 import ReactTimeAgo from "react-time-ago";
-import en from "javascript-time-ago/locale/en.json";
 import { AiFillHeart } from "react-icons/ai";
 
 import axios from "axios";
 const { useToken } = theme;
 
 const Comments = ({ comment, fetchDataNormal }) => {
-  TimeAgo.addDefaultLocale(en);
   const { token } = useToken();
   const [showReplies, setShowRplies] = useState(false);
   const [commentReply, setCommentReply] = useState("");
@@ -230,7 +226,7 @@ const Comments = ({ comment, fetchDataNormal }) => {
             ? showReplies === true
               ? comment.CommentReplies.map((reply) => {
                   return (
-                      <Row wrap={false} className="replyData">
+                      <Row key={comment.id} wrap={false} className="replyData">
                         <Col xs={3} sm={3} md={3} lg={3} xl={2}>
                           <Avatar size={50} src={reply.User?.user_image} />
                         </Col>

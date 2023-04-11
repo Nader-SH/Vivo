@@ -13,7 +13,6 @@ import {
   Row,
   theme,
 } from "antd";
-import friend from "../../assets/Friend.png";
 import { MoreOutlined, UserOutlined } from "@ant-design/icons";
 import { IoMdShareAlt } from "react-icons/io";
 import { BiCommentDetail } from "react-icons/bi";
@@ -25,14 +24,12 @@ import { Spin } from "antd";
 import TimeAgo from "javascript-time-ago";
 import { UserContext } from "../../App.js";
 import en from "javascript-time-ago/locale/en.json";
-import ru from "javascript-time-ago/locale/ru.json";
 import { MsgContext } from "../../App.js";
 import axios from "axios";
 const { useToken } = theme;
 
 const ShowPsots = () => {
   TimeAgo.addDefaultLocale(en);
-  TimeAgo.addLocale(ru);
   const { userData, setUserData } = React.useContext(UserContext);
   const { msg, setMsg } = useContext(MsgContext);
   const [comment, setComment] = useState("");

@@ -32,7 +32,7 @@ import Img2Svg from "../svg/Img2Svg";
 import Img3Svg from "../svg/Img3Svg";
 import Img4Svg from "../svg/Img4Svg";
 import Img5Svg from "../svg/Img5Svg";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../App.js";
 import axios from "axios";
 
@@ -40,20 +40,25 @@ const { useToken } = theme;
 
 const navButtons = [
   {
+    id : 1,
     name: "",
     icon: HomeSvg,
   },
-  //  {
-  //   name: 'metaverse',
-  //   icon: Img2Svg
-  // }, {
-  //   name: 'pi',
-  //   icon: Img3Svg
-  // }, {
-  //   name: 'meetings',
-  //   icon: Img4Svg
-  // },
+   {
+    id : 2,
+    name: 'metaverse',
+    icon: Img2Svg
+  }, {
+    id : 3,
+    name: 'pi',
+    icon: Img3Svg
+  }, {
+    id : 4,
+    name: 'meetings',
+    icon: Img4Svg
+  },
   {
+    id : 5,
     name: "marketplace",
     icon: Img5Svg,
   },
@@ -71,7 +76,6 @@ const HeaderComponent = () => {
   const [total, setTotal] = useState(0);
   const [dataNum, setDataNum] = useState(0);
   const [hovred, setHovred] = useState(false);
-  
 useEffect(()=>{
 if (userData === null){
   setImageUser(<Avatar size={50} src={userData?.user_image} />)
@@ -112,7 +116,7 @@ if (userData === null){
     if (userData === null) {
       return;
     } else {
-      if (userData.user_image !== "UserOutlined") {
+      if (userData?.user_image !== "UserOutlined") {
         setImageUser(<Avatar size={50} src={userData.user_image} />);
       }
     }
@@ -189,7 +193,7 @@ if (userData === null){
         }}
       >
         {navButtons.map((e, index) => (
-          <Link to={`/${e.name}`}>
+          <Link to={`/${e.name}`} key={navButtons.id}>
             <Button
               className={`headerIcons ${
                 endPointMark === "" ? "headerIconsActive" : ""
@@ -287,7 +291,7 @@ if (userData === null){
                           {dataNum} items
                         </Typography>
                       </div>
-                      {data === undefined || data.length === 0 ? (
+                      {data === undefined || data?.length === 0 ? (
                         <>
                           <hr
                             style={{
@@ -347,9 +351,10 @@ if (userData === null){
                           )}
                         </>
                       ) : (
-                        data.map((e) => (
+                        data?.map((e) => (
                           <>
                             <Card
+                            key="item"
                               className="divCard"
                               bordered={true}
                               style={{

@@ -13,7 +13,7 @@ const DisplayChat = (data) => {
         display: "flow-root",
       }}
     >
-      {data.data.message_sender_id === userData.id ? (
+      {data?.data.message_sender_id === userData?.id ? (
         <Col
           style={{
             margin: "10px",
@@ -33,7 +33,7 @@ const DisplayChat = (data) => {
               color:'white',
             }}
           >
-            {data.data.text_chat}
+            {data?.data.text_chat}
           </Typography>
         </Col>
       ) : (
@@ -60,7 +60,7 @@ const DisplayChat = (data) => {
               color:'white',
             }}
           >
-            {data.data.text_chat}
+            {data?.data.text_chat}
           </Typography>
         </Col>
       )}

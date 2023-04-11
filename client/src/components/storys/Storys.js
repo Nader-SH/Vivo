@@ -223,6 +223,7 @@ const Storys = () => {
           ) : (
             storysData.map((e) => (
               <div
+                key={e.id}
                 style={{
                   position: "relative",
                 }}

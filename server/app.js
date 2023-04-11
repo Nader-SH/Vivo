@@ -46,8 +46,11 @@ if (NODE_ENV === "production") {
 }
 let arrayOnlineUsers = [];
 const addUserOnline = (id, socketId) => {
+  const data = removeUserOnline(parseInt(id));
+  console.log(data, "remove");
   !arrayOnlineUsers.some((id) => id.id === id) &&
     arrayOnlineUsers.push({ id: id, socketId: socketId });
+  // console.log(arrayOnlineUsers , "the array");
 };
 const removeUserOnline = (id) => {
   arrayOnlineUsers = arrayOnlineUsers.filter((socketId) => id !== socketId);
@@ -63,7 +66,7 @@ io.on("connection", (socket) => {
   socket.on("newUser", (data) => {
     addUserOnline(data, socket.id);
   });
-  
+
   socket.on("send_message", async (data) => {
     console.log(data, socket.id, "data");
     const { message, receiverId, id } = data;
@@ -71,17 +74,17 @@ io.on("connection", (socket) => {
     if (receiverUser !== undefined) {
       io.to(receiverUser.socketId).emit("message", data);
       await createMessageQuery(id, receiverId, message);
-    }else{
+    } else {
       await createMessageQuery(id, receiverId, message);
     }
   });
   socket.on("typing", (isTyping) => {
-    const {receiverId} = isTyping
+    const { receiverId } = isTyping;
     const receiverUser = findUsers(receiverId);
     console.log(receiverUser);
     if (receiverUser === undefined) {
       console.log("user offline");
-    }else{
+    } else {
       socket.broadcast.to(receiverUser.socketId).emit("typing", isTyping);
     }
   });
@@ -98,4 +101,3 @@ app.use((err, req, res, next) => {
 });
 
 export { app, io, httpServer };
-
