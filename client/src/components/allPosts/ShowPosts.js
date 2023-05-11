@@ -208,7 +208,7 @@ const ShowPsots = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <Image width="60%" src={e.images_post} />
+                  <Image width="360px" src={e.images_post} />
                 </Col>
               )}
               <Col xs={23} sm={23} md={23} lg={23} xl={23} offset={1}>
@@ -491,7 +491,7 @@ const items = [
   {
     key: "1",
     label: "Delete",
-    onclick: finCal,
+    onClick: finCal,
   },
 ];
 

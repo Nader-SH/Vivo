@@ -193,7 +193,7 @@ if (userData === null){
         }}
       >
         {navButtons.map((e, index) => (
-          <Link to={`/${e.name}`} key={navButtons.id}>
+          <Link to={`/${e.name}`} key={e.id}>
             <Button
               className={`headerIcons ${
                 endPointMark === "" ? "headerIconsActive" : ""

@@ -16,6 +16,7 @@ const Friends = () => {
             <Col className='friends'>
                 {data.map((e) => (
                     <div
+                    key={e.id}
                         style={{
                             position: 'relative',
                         }}
@@ -42,91 +43,120 @@ export default Friends;
 
 const data = [
     {
+        id:1,
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:2,
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:3,
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:4,
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:5,
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:6,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:7,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:8,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:9,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:10,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:11,
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:12,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:13,
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:14,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:15,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:16,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:17,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,
     },
     {
+        id:18,
+
         img: person,
         userName: 'userName',
         userImg: imgFace,

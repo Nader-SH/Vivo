@@ -108,7 +108,6 @@ const Cart = () => {
     useEffect(() => {
         setCheckedForAll(data.length === 0 ? false : true);
     }, []);
-
     return (<>
         <div style={{
             background: 'rgba(165, 162, 153, 0.1)',
@@ -148,7 +147,9 @@ const Cart = () => {
                         </div>
                         <div>
                             {data.map((e) => (<>
-                                <div style={{
+                                <div 
+                                key={e.id}
+                                style={{
                                     display: 'flex',
                                     margin: '20px',
                                     justifyContent: 'space-between',

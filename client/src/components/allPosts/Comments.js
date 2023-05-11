@@ -1,12 +1,13 @@
+import axios from "axios";
 import "./style.css";
 import Typography from "antd/es/typography/Typography";
 import React, { useState } from "react";
 import { Avatar, Button, Col, Input, Row, theme } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import ReactTimeAgo from "react-time-ago";
+import ReactTimeAgo from 'react-time-ago'
 import { AiFillHeart } from "react-icons/ai";
 
-import axios from "axios";
+
 const { useToken } = theme;
 
 const Comments = ({ comment, fetchDataNormal }) => {
@@ -82,7 +83,7 @@ const Comments = ({ comment, fetchDataNormal }) => {
                 opacity: "0.8",
               }}
             >
-              <ReactTimeAgo date={comment.createdAt} locale="en-US" />
+              <ReactTimeAgo date={comment.createdAt} locale="en-US"/>
             </Typography>
           </Col>
         </Row>
@@ -226,50 +227,47 @@ const Comments = ({ comment, fetchDataNormal }) => {
             ? showReplies === true
               ? comment.CommentReplies.map((reply) => {
                   return (
-                      <Row key={comment.id} wrap={false} className="replyData">
-                        <Col xs={3} sm={3} md={3} lg={3} xl={2}>
-                          <Avatar size={50} src={reply.User?.user_image} />
-                        </Col>
-                        <Col
-                          xs={18}
-                          sm={18}
-                          md={18}
-                          lg={18}
-                          xl={18}
-                          className="replyText"
+                    <Row key={comment.id} wrap={false} className="replyData">
+                      <Col xs={3} sm={3} md={3} lg={3} xl={2}>
+                        <Avatar size={50} src={reply.User?.user_image} />
+                      </Col>
+                      <Col
+                        xs={18}
+                        sm={18}
+                        md={18}
+                        lg={18}
+                        xl={18}
+                        className="replyText"
+                      >
+                        <Typography
+                          style={{
+                            fontWeight: "bold",
+                          }}
                         >
-                          <Typography
-                            style={{
-                              fontWeight: "bold",
-                            }}
-                          >
-                            {reply.User.user_name}
-                          </Typography>
-                          <Typography
-                            style={{
-                              fontWeight: "500",
-                              opacity: "0.8",
-                              width: "100%",
-                            }}
-                          >
-                            {reply.text_reply}
-                          </Typography>
-                        </Col>
-                        <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                          <Typography
-                            style={{
-                              fontWeight: "500",
-                              opacity: "0.8",
-                              display: "flex",
-                            }}
-                          >
-                            <ReactTimeAgo
-                              date={reply.createdAt}
-                              locale="en-US"
-                            />
-                          </Typography>
-                        </Col>
-                      </Row>
+                          {reply.User.user_name}
+                        </Typography>
+                        <Typography
+                          style={{
+                            fontWeight: "500",
+                            opacity: "0.8",
+                            width: "100%",
+                          }}
+                        >
+                          {reply.text_reply}
+                        </Typography>
+                      </Col>
+                      <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                        <Typography
+                          style={{
+                            fontWeight: "500",
+                            opacity: "0.8",
+                            display: "flex",
+                          }}
+                        >
+                          <ReactTimeAgo date={reply.createdAt} locale="en-US" />
+                        </Typography>
+                      </Col>
+                    </Row>
                   );
                 })
               : ""
