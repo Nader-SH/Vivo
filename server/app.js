@@ -9,6 +9,14 @@ import { Server } from "socket.io";
 import cors from "cors";
 import { Socket } from "dgram";
 import { createMessageQuery } from "./queries/chat/index.js";
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+
+
 dotenv.config();
 const app = express();
 const httpServer = http.createServer(app);
@@ -35,15 +43,13 @@ app.use([
 
 app.use("/api/v1", router);
 
-if (NODE_ENV === "production") {
-  app.use(express.static(join(__dirname, "..", "client", "build")));
-  app.get("*", (req, res) => {
-    const buf = iconv.encode(data, "windows-1252");
-    const str = iconv.decode(buf, "windows-1252");
-    res.sendFile(join(__dirname, "..", "client", "build", "index.html"));
-    res.send(str);
+if (NODE_ENV === 'production') {
+  app.use(express.static(join(__dirname, '..', 'client', 'build')));
+  app.get('*', (req, res) => {
+    res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
   });
 }
+
 
 let arrayOnlineUsers = [];
 const addUserOnline = (id, socketId) => {
