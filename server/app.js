@@ -44,6 +44,7 @@ if (NODE_ENV === "production") {
     res.send(str);
   });
 }
+
 let arrayOnlineUsers = [];
 const addUserOnline = (id, socketId) => {
   const data = removeUserOnline(parseInt(id));
@@ -66,7 +67,6 @@ io.on("connection", (socket) => {
   socket.on("newUser", (data) => {
     addUserOnline(data, socket.id);
   });
-
   socket.on("send_message", async (data) => {
     console.log(data, socket.id, "data");
     const { message, receiverId, id } = data;
@@ -94,6 +94,7 @@ io.on("connection", (socket) => {
     console.log("disconnect", arrayOnlineUsers);
   });
 });
+
 app.use((req, res, next) => res.status(404).json({ error: "Not Found" }));
 
 app.use((err, req, res, next) => {
