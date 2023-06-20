@@ -4,7 +4,7 @@ import Typography from "antd/es/typography/Typography";
 import React, { useState } from "react";
 import { Avatar, Button, Col, Input, Row, theme } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import ReactTimeAgo from 'react-time-ago'
+import ReactTimeAgo from 'react-time-ago';
 import { AiFillHeart } from "react-icons/ai";
 
 
