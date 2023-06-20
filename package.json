@@ -12,7 +12,7 @@
     "buildSeeds": "cross-env NODE_ENV=development node server/database/seeds/buildSeeds.js",
     "buildDbP": "cross-env NODE_ENV=production node server/database/config/buildDb.js",
     "buildSeedsP": "cross-env NODE_ENV=production node server/database/seeds/buildSeeds.js",
-    "buildProduction":"npm i && cd client && npm i && npm run build"
+    "buildProduction": "npm i && cd client && npm i && npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +23,7 @@
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "env2": "^2.2.2",
     "express": "^4.18.2",
