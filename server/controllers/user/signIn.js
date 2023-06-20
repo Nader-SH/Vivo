@@ -72,7 +72,7 @@ const signIn = async (req, res, next) => {
       if (err.name === "ValidationError") {
         next(new CustomError(400, "Something went wrong, Try again"));
       }
-      next(CustomError(err));
+      next(CustomError(404,"Something went wrong, Try again"));
     }
   }
 };
