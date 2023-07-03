@@ -23,7 +23,7 @@ const ChatPageView = () => {
     <div
       style={{
         background: "rgba(165, 162, 153, 0.1)",
-        height: "833px", // هبد
+        height: "100%", // هبد
       }}
     >
       <div>

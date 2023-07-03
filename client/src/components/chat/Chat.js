@@ -39,12 +39,13 @@ const Chat = () => {
 
   const getListUsers = async () => {
     try {
-      const userLists = await axios.get("/api/v1/userfollow");
+      const userLists = await axios.get("/api/v1/getalluser");
       setUserList(userLists.data);
     } catch (error) {
       console.error(error);
     }
   };
+  // console.log(userList);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
