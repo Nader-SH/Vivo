@@ -4,6 +4,7 @@ import {
   createMessageController,
   getMessagesByReceiverIdController,
   getUserFollow,
+  getAllUser,
 } from "../controllers/chat/index.js";
 
 const chatRouter = Router();
@@ -14,5 +15,5 @@ chatRouter.get(
   getMessagesByReceiverIdController
 );
 chatRouter.get("/userfollow", auth, getUserFollow);
-
+chatRouter.get("/getalluser", auth, getAllUser);
 export default chatRouter;
