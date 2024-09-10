@@ -9,7 +9,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { errorTextSignUpSignIn } from "../../../App.js";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-// import jwt_decode from "jwt-decode";
 
 const MyFormItemContext = React.createContext([]);
 function toArr(str) {
