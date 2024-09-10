@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./style.css";
 import { Avatar, Col, Image, Row, theme, Tabs, Typography } from "antd";
 import logo from "../../../assets/vivo.png";

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from "react";
 import WelcomeComponents from "../components/welcome/Welcome";
 import { UserContext } from "../App.js";

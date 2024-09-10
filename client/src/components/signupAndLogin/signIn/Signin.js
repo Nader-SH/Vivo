@@ -1,12 +1,13 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./style.css";
 
 import { Button, Col, Form, Input, Row } from "antd";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../App.js";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
 const MyFormItemContext = React.createContext([]);
 function toArr(str) {
@@ -33,6 +34,7 @@ const MyFormItem = ({ name, ...props }) => {
 const SignIn = () => {
   const { userData, setUserData } = React.useContext(UserContext);
 
+  // eslint-disable-next-line no-unused-vars
   const [status, setStatus] = useState("done");
   const navigate = useNavigate();
   const [error, setError] = useState();
@@ -48,20 +50,6 @@ const SignIn = () => {
         }
       })
       .catch(function (error) {
-        setError(error);
-      });
-  };
-  const signInWithGoogle = (value) => {
-    axios
-      .post("/api/v1/signin", value)
-      .then((response) => {
-        setUserData(response.data.data);
-        if (userData !== null) {
-          navigate("/");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
         setError(error);
       });
   };

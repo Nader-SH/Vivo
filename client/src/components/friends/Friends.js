@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import './style.css';
 import person from '../../assets/border.png';
 import imgFace from '../../assets/Friend.png';

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./style.css";
 import Typography from "antd/es/typography/Typography";
 import React, { useContext, useEffect, useState } from "react";

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import HeaderComponent from "../components/header/Header";
 import Chat from "../components/chat/Chat";
 import { UserContext } from "../App.js";

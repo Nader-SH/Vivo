@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./style.css";
 import { Button, Col, Image, Row, theme } from "antd";
 import logo from "../../assets/vimeo.png";

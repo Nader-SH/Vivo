@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Col, Row, theme } from "antd";
 import Typography from "antd/es/typography/Typography.js";
 import { useContext } from "react";

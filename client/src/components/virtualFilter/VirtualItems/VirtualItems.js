@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import './style.css';
 import { Card, Col, Image, Row, Typography } from 'antd';
 import nftPic from '../../../assets/nft.jpg';

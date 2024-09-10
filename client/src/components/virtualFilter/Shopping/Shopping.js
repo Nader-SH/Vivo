@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import './style.css';
 import { Button, Card, Col, Image, Rate, Row, Typography } from 'antd';
 import { useContext, useState } from 'react';

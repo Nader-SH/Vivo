@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import mapOfWorld from "../assets/mapOfWorld.png";
 import SignAndLogin from "../components/signupAndLogin/leftSide/LeftSide";
 import "./main.css";

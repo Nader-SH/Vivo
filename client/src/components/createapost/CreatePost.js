@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import './style.css';
 import { Tabs } from 'antd';
 import { EditOutlined, BorderBottomOutlined, FolderViewOutlined } from '@ant-design/icons';

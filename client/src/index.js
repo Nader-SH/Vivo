@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";

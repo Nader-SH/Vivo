@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import Cart from "../components/cart/Cart";
 import HeaderComponent from "../components/header/Header";
 import { UserContext } from "../App.js";

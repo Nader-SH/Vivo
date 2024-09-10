@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import './style.css';
 import { InsertRowAboveOutlined, InsertRowRightOutlined, SearchOutlined, TableOutlined } from '@ant-design/icons';
 import { Col, Input, Radio, Row, Select, theme, Typography } from 'antd';

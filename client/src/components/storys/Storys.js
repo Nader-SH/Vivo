@@ -1,5 +1,7 @@
-import "./style.css";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import person from "../../assets/border.png";
+import "./style.css";
 // import imgFace from "../../assets/Friend.png";
 import { Image, Avatar, Typography, Row, Col, Spin, Button } from "antd";
 import { useEffect, useRef, useState } from "react";

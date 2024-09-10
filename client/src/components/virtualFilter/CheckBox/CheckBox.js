@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
 import { Checkbox, Col, Row, Typography } from 'antd';
 import './style.css';

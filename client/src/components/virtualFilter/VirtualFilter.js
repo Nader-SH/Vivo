@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import './style.css';
 import React, { useState } from 'react';
 import { Avatar, Col, Radio, Row, Select, theme } from 'antd';

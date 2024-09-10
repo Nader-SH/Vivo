@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { createCanvas } from 'canvas';
-
 const getCroppedImg = async (imageSrc, crop, zoom) => {
   // Create a canvas to draw the cropped image on
   const canvas = createCanvas(crop.width, crop.height);

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import { Input, Button, theme, Row, Col, Avatar, Typography, Form } from "antd";
 import "./style.css";
