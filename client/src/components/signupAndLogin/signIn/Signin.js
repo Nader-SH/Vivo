@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 import { UserContext } from "../../../App.js";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
@@ -117,17 +117,17 @@ const SignIn = () => {
           </Button>
         </Form>
       </Col>
-      // <Row>
-      //   <Col>
-      //     // <GoogleOAuthProvider clientId="702655690076-uhh7dd5ken0njf0bmfk64rqf1obfhf4k.apps.googleusercontent.com">
-      //     //   <GoogleLogin
-      //     //     onSuccess={(credentialResponse) => {
-      //     //       signInWithGoogle(jwt_decode(credentialResponse.credential));
-      //     //     }}
-      //     //   />
-      //     // </GoogleOAuthProvider>
-      //   </Col>
-      // </Row>
+      {/* <Row>
+        <Col>
+          <GoogleOAuthProvider clientId="702655690076-uhh7dd5ken0njf0bmfk64rqf1obfhf4k.apps.googleusercontent.com">
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                signInWithGoogle(jwt_decode(credentialResponse.credential));
+              }}
+            />
+          </GoogleOAuthProvider>
+        </Col>
+      </Row> */}
     </Row>
   );
 };

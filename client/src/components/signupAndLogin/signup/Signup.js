@@ -59,16 +59,16 @@ const Signup = () => {
   };
   const signUpWithGoogle = (value) => {
     axios
-    .post("/api/v1/signup", value)
-    .then(function (response) {
-      setPasswordError(false);
-      setMsgErr(response.data.message);
-    })
-    .catch(function (error) {
-      console.log(error);
-      setStatusError(error);
-      setMsgErr(error.response.data.message);
-    });
+      .post("/api/v1/signup", value)
+      .then(function (response) {
+        setPasswordError(false);
+        setMsgErr(response.data.message);
+      })
+      .catch(function (error) {
+        console.log(error);
+        setStatusError(error);
+        setMsgErr(error.response.data.message);
+      });
   };
 
   return (
@@ -150,17 +150,17 @@ const Signup = () => {
           margin: "10px",
         }}
       >
-        // <Row>
-        //   <Col>
-        //     <GoogleOAuthProvider clientId="702655690076-uhh7dd5ken0njf0bmfk64rqf1obfhf4k.apps.googleusercontent.com">
-        //       <GoogleLogin
-        //         onSuccess={(credentialResponse) => {
-        //           signUpWithGoogle(jwt_decode(credentialResponse.credential))
-        //         }}
-        //       />
-        //     </GoogleOAuthProvider>
-        //   </Col>
-        // </Row>
+        {/* <Row>
+          <Col>
+            <GoogleOAuthProvider clientId="702655690076-uhh7dd5ken0njf0bmfk64rqf1obfhf4k.apps.googleusercontent.com">
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  signUpWithGoogle(jwt_decode(credentialResponse.credential));
+                }}
+              />
+            </GoogleOAuthProvider>
+          </Col>
+        </Row> */}
       </Col>
     </Row>
   );
