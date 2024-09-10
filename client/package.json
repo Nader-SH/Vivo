@@ -12,7 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.0.4",
     "axios": "^1.2.5",
-    "canvas": "^2.11.0",
+    "canvas": "^2.11.2",
     "js-cookie": "^3.0.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
